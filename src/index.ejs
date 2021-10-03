@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes, shrink-to-fit=no">
+
+    <title>AI Art Datasets</title>
+
+    <style>
+        .app-loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(224, 224, 224);
+            opacity: 1;
+            z-index: 999999;
+            transition: all 2.9s cubic-bezier(.25, .8, .25, 1);
+        }
+
+        .app-loader-inner {
+            transform: translateY(-50%);
+            top: 50%;
+            position: absolute;
+            width: 100%;
+            color: white;
+            text-align: center;
+        }
+
+        .app-loader-inner label {
+            font-size: 20px;
+            opacity: 0;
+            display: inline-block;
+        }
+
+        @keyframes lol {
+            0% {
+                opacity: 0;
+                transform: translateX(-300px);
+            }
+
+            33%,
+            66% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(300px);
+            }
+        }
+
+        @-webkit-keyframes lol {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateX(-300px);
+            }
+
+            33%,
+            66% {
+                opacity: 1;
+                -webkit-transform: translateX(0);
+            }
+
+            100% {
+                opacity: 0;
+                -webkit-transform: translateX(300px);
+            }
+        }
+
+        .app-loader-inner label:nth-child(6) {
+            -webkit-animation: lol 3s infinite ease-in-out;
+            animation: lol 3s infinite ease-in-out;
+        }
+
+        .app-loader-inner label:nth-child(5) {
+            -webkit-animation: lol 3s .1s infinite ease-in-out;
+            animation: lol 3s .1s infinite ease-in-out;
+        }
+
+        .app-loader-inner label:nth-child(4) {
+            -webkit-animation: lol 3s .2s infinite ease-in-out;
+            animation: lol 3s .2s infinite ease-in-out;
+        }
+
+        .app-loader-inner label:nth-child(3) {
+            -webkit-animation: lol 3s .3s infinite ease-in-out;
+            animation: lol 3s .3s infinite ease-in-out;
+        }
+
+        .app-loader-inner label:nth-child(2) {
+            -webkit-animation: lol 3s .4s infinite ease-in-out;
+            animation: lol 3s .4s infinite ease-in-out;
+        }
+
+        .app-loader-inner label:nth-child(1) {
+            -webkit-animation: lol 3s .5s infinite ease-in-out;
+            animation: lol 3s .5s infinite ease-in-out;
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!-- <link rel="icon" href="/ai-art-datasets/favicon.png?_=<%-new Date()%>" type="image/png" /> -->
+    <link rel="icon" href="/favicon.png?_=<%-new Date()%>" type="image/png" />
+</head>
+
+<body>
+    <noscript>
+        You need to enable JavaScript to run this app.
+    </noscript>
+
+    <div class="app-loader">
+        <div class="app-loader-inner">
+            <label> ● </label><label> ● </label><label> ● </label><label> ● </label><label> ● </label><label> ● </label>
+        </div>
+    </div>
+
+    <div id="app-root" data-node-env="<%-process.env.NODE_ENV%>" data-app-name="<%-APP_NAME%>"
+        data-app-version="<%-APP_VERSION%>" data-build-date="<%-new Date()%>">
+    </div>
+</body>
+
+</html>

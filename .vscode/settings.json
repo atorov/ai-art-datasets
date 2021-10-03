@@ -1,0 +1,32 @@
+{
+    "cSpell.words": [
+        "atorov",
+        "bgnd",
+        "browserslist",
+        "camelcase",
+        "chunkhash",
+        "crossorigin",
+        "devtool",
+        "downlevel",
+        "downlevel iteration",
+        "entrypoint",
+        "esnext",
+        "iteration",
+        "max",
+        "max entrypoint size",
+        "plusplus",
+        "prebuild",
+        "predev",
+        "prestart",
+        "size",
+        "sourcemap",
+        "stroustrup",
+        "tslib",
+        "typechecking",
+        "unlisten",
+        "vdivider",
+        "xsettings",
+        "xtheme"
+    ],
+    "typescript.tsdk": "node_modules/typescript/lib"
+}

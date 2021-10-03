@@ -1,0 +1,42 @@
+[
+    {
+        "id": "1",
+        "name": "Datasets",
+        "description": "Image collections which can be used for AI/ML/Generative artworks",
+        "imgUrl": "/img/home/pexels-polina-zimmerman-3747505.jpg",
+        "link": "datasets",
+        "auth": ":OPEN:"
+    },
+    {
+        "id": "2",
+        "name": "Gallery",
+        "description": "Generative design artworks",
+        "imgUrl": "/img/home/pexels-adrianna-calvo-21264.jpg",
+        "link": "gallery",
+        "auth": ":OPEN:"
+    },
+    {
+        "id": "3",
+        "name": "Sign in",
+        "description": "Sing in to your account",
+        "imgUrl": "/img/home/pexels-dark-indigo-2917442.jpg",
+        "link": "login",
+        "auth": ":!OPEN:"
+    },
+    {
+        "id": "4",
+        "name": "Profile",
+        "description": "Profile details and settings",
+        "imgUrl": "/img/home/pexels-taryn-elliott-4112285.jpg",
+        "link": "users/_profile",
+        "auth": ":USER:"
+    },
+    {
+        "id": "5",
+        "name": "Admin console",
+        "description": "Administration tools",
+        "imgUrl": "/img/home/pexels-pixabay-164907.jpg",
+        "link": "users/_admin",
+        "auth": ":ADMIN:"
+    }
+]

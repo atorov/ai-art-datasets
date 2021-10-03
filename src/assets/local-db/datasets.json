@@ -1,0 +1,125 @@
+[
+    {
+        "id": "particle-flow-wh-bgnd",
+        "name": "Particle Flow (white background)",
+        "description": "Abstract black/dark objects composed of many particles depicted on a white background",
+        "tags": [
+            "particles",
+            "flow",
+            "black and white",
+            "white background",
+            "light",
+            "abstract",
+            "particle-flow-wh-bgnd"
+        ],
+        "itemsNumber": 2111,
+        "resolution": {
+            "width": 1024,
+            "height": 1024
+        },
+        "imageFormat": "JPEG",
+        "version": "1.0.0",
+        "createdAt": 1608470969325,
+        "updatedAt": 1608470969325,
+        "authors": [
+            "Atorov"
+        ],
+        "license": "CC BY-NC-ND",
+        "url": "https://drive.google.com/drive/folders/1vknEN1ItAyo8jpVcVGEhtjezr6H3nkkj?usp=sharing",
+        "sampleUrls": [
+            "/img/datasets/samples/particle-flow-wh-bgnd-sample-01.jpg",
+            "/img/datasets/samples/particle-flow-wh-bgnd-sample-02.jpg",
+            "/img/datasets/samples/particle-flow-wh-bgnd-sample-03.jpg",
+            "/img/datasets/samples/particle-flow-wh-bgnd-sample-04.jpg",
+            "/img/datasets/samples/particle-flow-wh-bgnd-sample-05.jpg",
+            "/img/datasets/samples/particle-flow-wh-bgnd-sample-06.jpg",
+            "/img/datasets/samples/particle-flow-wh-bgnd-sample-07.jpg",
+            "/img/datasets/samples/particle-flow-wh-bgnd-sample-08.jpg"
+        ],
+        "downloads": 0,
+        "externalUrl": "https://www.instagram.com/confusion.circles/"
+    },
+    {
+        "id": "particle-flow-bk-bgnd",
+        "name": "Particle Flow (black background)",
+        "description": "Abstract white/light objects composed of many particles depicted on a black background",
+        "tags": [
+            "particles",
+            "flow",
+            "black and white",
+            "black background",
+            "dark",
+            "abstract",
+            "particle-flow-bk-bgnd"
+        ],
+        "itemsNumber": 2111,
+        "resolution": {
+            "width": 1024,
+            "height": 1024
+        },
+        "imageFormat": "JPEG",
+        "version": "1.0.0",
+        "createdAt": 1608470969325,
+        "updatedAt": 1608470969325,
+        "authors": [
+            "Atorov"
+        ],
+        "license": "CC BY-NC-ND",
+        "url": "https://drive.google.com/drive/folders/1rlsM7F3fASdCmCaYxJpdVvd0HlYK5Q1K?usp=sharing",
+        "sampleUrls": [
+            "/img/datasets/samples/particle-flow-bk-bgnd-sample-01.jpg",
+            "/img/datasets/samples/particle-flow-bk-bgnd-sample-02.jpg",
+            "/img/datasets/samples/particle-flow-bk-bgnd-sample-03.jpg",
+            "/img/datasets/samples/particle-flow-bk-bgnd-sample-04.jpg",
+            "/img/datasets/samples/particle-flow-bk-bgnd-sample-05.jpg",
+            "/img/datasets/samples/particle-flow-bk-bgnd-sample-06.jpg",
+            "/img/datasets/samples/particle-flow-bk-bgnd-sample-07.jpg",
+            "/img/datasets/samples/particle-flow-bk-bgnd-sample-08.jpg"
+        ],
+        "downloads": 0,
+        "externalUrl": "https://www.instagram.com/confusion.circles/"
+    },
+    {
+        "id": "rain-drops-rd00001a",
+        "name": "Fluorescent alien cells",
+        "description": "Fluorescent green-yellow bubbles depicted on a dark background",
+        "tags": [
+            "fluorescent",
+            "cells",
+            "bubbles",
+            "green",
+            "yellow",
+            "dark background",
+            "lifeforms",
+            "alien",
+            "extraterrestrial",
+            "rain-drops-rd00001a"
+        ],
+        "itemsNumber": 3432,
+        "resolution": {
+            "width": 512,
+            "height": 512
+        },
+        "imageFormat": "JPEG",
+        "version": "1.0.0",
+        "createdAt": 1618587816931,
+        "updatedAt": 1618587816931,
+        "authors": [
+            "Atorov"
+        ],
+        "license": "CC BY-NC-ND",
+        "url": "https://drive.google.com/drive/folders/168PUD0Xmxcj5ke8RhlYP432SMdSLledp?usp=sharing",
+        "sampleUrls": [
+            "/img/datasets/samples/rain-drops-rd00001a-sample-01.jpg",
+            "/img/datasets/samples/rain-drops-rd00001a-sample-02.jpg",
+            "/img/datasets/samples/rain-drops-rd00001a-sample-03.jpg",
+            "/img/datasets/samples/rain-drops-rd00001a-sample-04.jpg",
+            "/img/datasets/samples/rain-drops-rd00001a-sample-05.jpg",
+            "/img/datasets/samples/rain-drops-rd00001a-sample-06.jpg",
+            "/img/datasets/samples/rain-drops-rd00001a-sample-07.jpg",
+            "/img/datasets/samples/rain-drops-rd00001a-sample-08.jpg"
+        ],
+        "downloads": 0,
+        "externalUrl": "https://www.instagram.com/confusion.circles/"
+    }
+]
