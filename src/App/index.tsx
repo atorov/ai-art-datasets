@@ -1,5 +1,5 @@
-import { createTheme, ThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
 
 import AppContextProvider from './app-context/Provider'
 import AuthContextProvider from './auth-context/Provider'
@@ -15,7 +15,7 @@ if (appLoaderElement) {
 
 const theme = createTheme({
     palette: {
-        type: 'dark',
+        mode: 'dark',
     },
 })
 

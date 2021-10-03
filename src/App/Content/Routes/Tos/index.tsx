@@ -1,19 +1,9 @@
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import { Alert, AlertTitle } from '@material-ui/lab'
-
-const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        marginTop: theme.spacing(4),
-        marginBottom: theme.spacing(4),
-    },
-}))
+import Container from '@mui/material/Container'
+import { Alert, AlertTitle } from '@mui/lab'
 
 function Tos() {
-    const classes: any = useStyles()
-
     return (
-        <Container className={classes.root}>
+        <Container sx={{ my: 4 }}>
             <Alert severity="info">
                 <AlertTitle>
                     Terms of use

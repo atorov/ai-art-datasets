@@ -1,41 +1,13 @@
 import { Dispatch, SetStateAction, useState } from 'react'
-
-import {
-    Redirect,
-    useLocation,
-} from 'react-router-dom'
-
-import { makeStyles } from '@material-ui/core/styles'
-
-import Avatar from '@material-ui/core/Avatar'
-import Button from '@material-ui/core/Button'
-import Container from '@material-ui/core/Container'
-import TextField from '@material-ui/core/TextField'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
-
+import { Redirect, useLocation } from 'react-router-dom'
+import Avatar from '@mui/material/Avatar'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Container from '@mui/material/Container'
+import TextField from '@mui/material/TextField'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import useAuth from '../../../../lib/hooks/use-auth'
-
 import useCall from '../../../../lib/api/hooks/use-call'
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-}))
 
 enum ESubmitButtonStatus {
     Ready = ':READY:',
@@ -47,7 +19,6 @@ type TSubmitButtonStatusTuple = [TSubmitButtonStatus, Dispatch<SetStateAction<TS
 const initSbStatus: TSubmitButtonStatus = ESubmitButtonStatus.Ready
 
 function Login() {
-    const classes = useStyles()
     const location = useLocation()
 
     const [isAuth, auth]: any = useAuth()
@@ -64,13 +35,28 @@ function Login() {
 
     return (
         <Container component="main" maxWidth="xs">
-            <div className={classes.root}>
-                <Avatar className={classes.avatar}>
+            <Box
+                sx={{
+                    mt: 8,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <Avatar
+                    sx={{
+                        m: 1,
+                        backgroundColor: (theme) => theme.palette.secondary.main,
+                    }}
+                >
                     <LockOutlinedIcon />
                 </Avatar>
                 <form
                     noValidate
-                    className={classes.form}
+                    style={{
+                        width: '100%', // Fix IE 11 issue.
+                        marginTop: '8px',
+                    }}
                     onSubmit={async (event) => {
                         event.preventDefault()
                         setSubmitButtonStatus(ESubmitButtonStatus.Pending)
@@ -115,6 +101,7 @@ function Login() {
                         margin="normal"
                         fullWidth
                         type="password"
+                        required
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                     />
@@ -124,12 +111,12 @@ function Login() {
                         variant="contained"
                         color="primary"
                         disabled={submitButtonStatus !== ESubmitButtonStatus.Ready || !username || !password}
-                        className={classes.submit}
+                        sx={{ mx: 0, my: 3 }}
                     >
                         Sign In
                     </Button>
                 </form>
-            </div>
+            </Box>
         </Container>
     )
 }

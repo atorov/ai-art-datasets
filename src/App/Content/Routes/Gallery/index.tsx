@@ -1,94 +1,28 @@
 import { useEffect, useState } from 'react'
-
 import { Link } from 'react-router-dom'
-
-import { makeStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
-import Card from '@material-ui/core/Card'
-import CardActionArea from '@material-ui/core/CardActionArea'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import Container from '@material-ui/core/Container'
-import FormControl from '@material-ui/core/FormControl'
-import IconButton from '@material-ui/core/IconButton'
-import InputBase from '@material-ui/core/InputBase'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import Paper from '@material-ui/core/Paper'
-import Select from '@material-ui/core/Select'
-import Typography from '@material-ui/core/Typography'
-import ClearIcon from '@material-ui/icons/Clear'
-import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty'
-import RefreshIcon from '@material-ui/icons/Refresh'
-import SearchIcon from '@material-ui/icons/Search'
-
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Card from '@mui/material/Card'
+import CardActionArea from '@mui/material/CardActionArea'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import Container from '@mui/material/Container'
+import FormControl from '@mui/material/FormControl'
+import IconButton from '@mui/material/IconButton'
+import InputBase from '@mui/material/InputBase'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import Paper from '@mui/material/Paper'
+import Select from '@mui/material/Select'
+import Typography from '@mui/material/Typography'
+import ClearIcon from '@mui/icons-material/Clear'
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
+import RefreshIcon from '@mui/icons-material/Refresh'
+import SearchIcon from '@mui/icons-material/Search'
 import useGalleryItems from '../../../../lib/hooks/use-gallery-items'
 import useDebounce from '../../../../lib/hooks/use-debounce'
-
 import appInitState from '../../../app-context/init-state'
 import { useAppContext } from '../../../app-context/Provider'
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        marginTop: theme.spacing(4),
-    },
-
-    search: {
-        display: 'flex',
-        maxWidth: 1000,
-        alignItems: 'center',
-        marginTop: theme.spacing(1),
-        marginRight: 'auto',
-        marginBottom: theme.spacing(1),
-        marginLeft: 'auto',
-    },
-    searchInput: {
-        flex: 1,
-        marginLeft: theme.spacing(1),
-    },
-    searchButton: {
-        padding: 10,
-    },
-
-    filters: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        margin: theme.spacing(1),
-    },
-    formSelect: {
-        display: 'flex',
-        margin: theme.spacing(1),
-        minWidth: 340,
-        maxWidth: 480,
-    },
-
-    filters__actions: {
-        marginBottom: theme.spacing(1),
-        textAlign: 'center',
-    },
-
-    cards: {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-    },
-    card__link: {
-        flex: 1,
-        minWidth: 340,
-        maxWidth: 340,
-        margin: theme.spacing(1),
-        textDecoration: 'none',
-    },
-    card: {
-        height: '100%',
-    },
-    card__media: {
-        height: 180,
-    },
-}))
 
 function Gallery() {
     const [appState, appDispatch] = useAppContext()
@@ -114,19 +48,28 @@ function Gallery() {
 
     const items = useGalleryItems()
 
-    const classes: any = useStyles()
-
     return (
-        <Container className={classes.root}>
+        <Container sx={{ mt: 4 }}>
             <Typography variant="h4" align="center" gutterBottom>
                 Generative design artworks
             </Typography>
 
-            <Paper component="form" className={classes.search}>
+            <Paper
+                component="form"
+                sx={{
+                    display: 'flex',
+                    maxWidth: '1000px',
+                    alignItems: 'center',
+                    mt: 1,
+                    marginRight: 'auto',
+                    mb: 1,
+                    marginLeft: 'auto',
+                }}
+            >
                 <IconButton
                     type="button"
                     aria-label="clear"
-                    className={classes.searchButton}
+                    sx={{ p: '10px' }}
                     onClick={() => {
                         setSearchTerm('')
                         appDispatch({
@@ -143,21 +86,35 @@ function Gallery() {
                     value={searchTerm}
                     placeholder="Search"
                     inputProps={{ 'aria-label': 'search' }}
-                    className={classes.searchInput}
+                    sx={{ flex: 1, ml: 1 }}
                     onChange={(event) => setSearchTerm(event.target.value)}
                 />
                 <IconButton
                     type="submit"
                     aria-label="search"
-                    className={classes.searchButton}
+                    sx={{ p: '10px' }}
                     onClick={(event) => event.preventDefault()}
                 >
                     <SearchIcon />
                 </IconButton>
             </Paper>
 
-            <Box className={classes.filters}>
-                <FormControl className={classes.formSelect}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    flexWrap: 'wrap',
+                    m: 1,
+                }}
+            >
+                <FormControl
+                    sx={{
+                        display: 'flex',
+                        m: 1,
+                        minWidth: '340px',
+                        maxWidth: '480px',
+                    }}
+                >
                     <InputLabel id="authors-multiple-label">
                         Authors
                     </InputLabel>
@@ -165,6 +122,7 @@ function Gallery() {
                         id="authors-multiple"
                         labelId="authors-multiple-label"
                         value={appState.gallery.sfs.selectedAuthors}
+                        label="Authors"
                         multiple
                         onChange={(event) => appDispatch({
                             type: ':appState/gallery/PATCH:',
@@ -183,7 +141,14 @@ function Gallery() {
                         ))}
                     </Select>
                 </FormControl>
-                <FormControl className={classes.formSelect}>
+                <FormControl
+                    sx={{
+                        display: 'flex',
+                        m: 1,
+                        minWidth: '340px',
+                        maxWidth: '480px',
+                    }}
+                >
                     <InputLabel id="sort-by-date-label">
                         Sort by date
                     </InputLabel>
@@ -191,6 +156,7 @@ function Gallery() {
                         id="sort-by-date"
                         labelId="sort-by-date-label"
                         value={appState.gallery.sfs.order}
+                        label="Sort by date"
                         onChange={(event) => appDispatch({
                             type: ':appState/gallery/PATCH:',
                             payload: {
@@ -214,7 +180,12 @@ function Gallery() {
                 </FormControl>
             </Box>
 
-            <Box className={classes.filters__actions}>
+            <Box
+                sx={{
+                    mb: 1,
+                    textAlign: 'center',
+                }}
+            >
                 <Button
                     startIcon={<RefreshIcon />}
                     variant="contained"
@@ -234,17 +205,34 @@ function Gallery() {
                 </Button>
             </Box>
 
-            <Box className={classes.cards}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                }}
+            >
                 {items.map(({
                     id, url, description, name,
                 }) => (
-                    <Link key={id} to={'gallery/' + id} className={classes.card__link}>
-                        <Card className={classes.card}>
+                    <Link
+                        key={id}
+                        to={'gallery/' + id}
+                        style={{
+                            flex: 1,
+                            minWidth: '340px',
+                            maxWidth: '340px',
+                            margin: '8px',
+                            textDecoration: 'none',
+                        }}
+                    >
+                        <Card sx={{ height: '100%' }}>
                             <CardActionArea>
                                 <CardMedia
-                                    className={classes.card__media}
                                     image={url}
                                     title={name}
+                                    sx={{ height: '180px' }}
                                 />
                                 <CardContent>
                                     <Typography variant="h5" component="h2" gutterBottom>

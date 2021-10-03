@@ -1,53 +1,22 @@
 import { Link, useHistory } from 'react-router-dom'
-
-import { makeStyles, Theme } from '@material-ui/core/styles'
-
-import Container from '@material-ui/core/Container'
-import Divider from '@material-ui/core/Divider'
-import Typography from '@material-ui/core/Typography'
-import TwitterIcon from '@material-ui/icons/Twitter'
-
+import { useTheme, styled } from '@mui/material/styles'
+import Container from '@mui/material/Container'
+import Divider from '@mui/material/Divider'
+import Typography from '@mui/material/Typography'
+import TwitterIcon from '@mui/icons-material/Twitter'
 import { useAppContext } from '../../app-context/Provider'
 
-const useStyles = makeStyles((theme: Theme) => ({
-    root: (styleProps: any) => ({
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'end',
-        justifyContent: 'center',
-        minHeight: styleProps.footerHeight,
-        maxHeight: styleProps.footerHeight,
-        minWidth: '100%',
-        maxWidth: '100%',
-        margin: 0,
-        padding: 4,
-        background: theme.palette.background.paper,
-        textAlign: 'center',
-    }),
-
-    text: {
-        cursor: 'pointer',
-    },
-    twitterIcon: {
-        fontSize: 14,
-    },
-
-    vdivider: {
-        margin: `0 ${theme.spacing(1)}px`,
-    },
-
-    link: {
-        textDecoration: 'none',
+const StyledLink = styled(Link)(({ theme }) => ({
+    textDecoration: 'none',
+    color: theme.palette.text.primary,
+    '&:visited': {
         color: theme.palette.text.primary,
-        '&:visited': {
-            color: theme.palette.text.primary,
-        },
-        '&:hover': {
-            color: theme.palette.text.primary,
-        },
-        '&:active': {
-            color: theme.palette.text.primary,
-        },
+    },
+    '&:hover': {
+        color: theme.palette.text.primary,
+    },
+    '&:active': {
+        color: theme.palette.text.primary,
     },
 }))
 
@@ -55,15 +24,29 @@ function Footer() {
     const [appState] = useAppContext()
 
     const history = useHistory()
-
-    const classes: any = useStyles({ footerHeight: appState.ui.footer.height })
+    const theme = useTheme()
 
     return (
-        <Container className={classes.root}>
+        <Container
+            sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'end',
+                justifyContent: 'center',
+                minHeight: appState.ui.footer.height,
+                maxHeight: appState.ui.footer.height,
+                minWidth: '100%',
+                maxWidth: '100%',
+                margin: 0,
+                padding: 4,
+                background: theme.palette.background.paper,
+                textAlign: 'center',
+            }}
+        >
             <Typography
                 component="p"
                 variant="caption"
-                className={classes.text}
+                sx={{ cursor: 'pointer' }}
                 onClick={() => history.push('/feedback/redirect')}
             >
                 © Atorov 2020-2021
@@ -72,32 +55,32 @@ function Footer() {
             <Divider
                 orientation="vertical"
                 flexItem
-                className={classes.vdivider}
+                sx={{ margin: `0 ${theme.spacing(1)}px` }}
             />
             <Typography
                 component="p"
                 variant="caption"
-                className={classes.text}
+                sx={{ cursor: 'pointer' }}
                 onClick={() => history.push('/feedback/redirect')}
             >
                 &nbsp;
-                <TwitterIcon className={classes.twitterIcon} />
+                <TwitterIcon sx={{ fontSize: '14px' }} />
             </Typography>
 
             <Divider
                 orientation="vertical"
                 flexItem
-                className={classes.vdivider}
+                sx={{ margin: `0 ${theme.spacing(1)}px` }}
             />
-            <Link to="/tos" className={classes.link}>
+            <StyledLink to="/tos">
                 <Typography
                     component="p"
                     variant="caption"
-                    className={classes.text}
+                    sx={{ cursor: 'pointer' }}
                 >
                     Terms of use
                 </Typography>
-            </Link>
+            </StyledLink>
 
         </Container>
     )

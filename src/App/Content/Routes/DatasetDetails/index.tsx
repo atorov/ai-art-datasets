@@ -1,98 +1,20 @@
 import { Redirect, useHistory, useParams } from 'react-router-dom'
-
-import { makeStyles } from '@material-ui/core/styles'
-
-import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Chip from '@material-ui/core/Chip'
-import Container from '@material-ui/core/Container'
-import Divider from '@material-ui/core/Divider'
-import People from '@material-ui/icons/People'
-import PersonIcon from '@material-ui/icons/Person'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
-import HomeIcon from '@material-ui/icons/Home'
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
-import NavigateNextIcon from '@material-ui/icons/NavigateNext'
-import OpenInNewIcon from '@material-ui/icons/OpenInNew'
-
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import ButtonGroup from '@mui/material/ButtonGroup'
+import Chip from '@mui/material/Chip'
+import Container from '@mui/material/Container'
+import Divider from '@mui/material/Divider'
+import People from '@mui/icons-material/People'
+import PersonIcon from '@mui/icons-material/Person'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload'
+import HomeIcon from '@mui/icons-material/Home'
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import useDatasets from '../../../../lib/hooks/use-datasets'
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        marginTop: theme.spacing(4),
-    },
-
-    actions: {
-        marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(1),
-        textAlign: 'center',
-    },
-
-    samples: {
-        textAlign: 'center',
-    },
-    sample: {
-        display: 'inline-block',
-        width: 256,
-        margin: `${theme.spacing(0.25)}px ${theme.spacing(0.5)}px`,
-    },
-
-    moreInfo: {
-        width: 'fit-content',
-        maxWidth: '100%',
-        marginTop: theme.spacing(2),
-        marginRight: 'auto',
-        marginBottom: 0,
-        marginLeft: 'auto',
-    },
-    moreInfo__row: {
-        display: 'flex',
-        flexDirection: 'row',
-        minWidth: 180,
-    },
-    moreInfo__col1: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        width: 160,
-        minWidth: 160,
-    },
-    moreInfo__col1__icon: {
-        paddingRight: theme.spacing(1),
-    },
-    moreInfo__col1__text: {
-        fontWeight: 800,
-    },
-    moreInfo__col2__text: {
-        wordBreak: 'break-word',
-        cursor: 'pointer',
-    },
-    moreInfo__cell: {
-        padding: theme.spacing(1),
-    },
-
-    tags: {
-        width: 'fit-content',
-        minWidth: 180,
-        margin: `${theme.spacing(2)}px auto 0 auto`,
-        padding: theme.spacing(1),
-    },
-    tag: {
-        margin: theme.spacing(0.25),
-    },
-
-    navButtonGroup: {
-        display: 'block',
-        width: 'fit-content',
-        marginTop: theme.spacing(2),
-        marginRight: 'auto',
-        marginBottom: 0,
-        marginLeft: 'auto',
-    },
-}))
 
 function DatasetDetails() {
     const history = useHistory()
@@ -100,8 +22,6 @@ function DatasetDetails() {
 
     const items = useDatasets()
     const datasetIndex = items.findIndex((item) => item.id === datasetId)
-
-    const classes: any = useStyles()
 
     if (datasetIndex < 0) {
         return <Redirect to={{ pathname: '/datasets' }} />
@@ -121,7 +41,7 @@ function DatasetDetails() {
     const prevDatasetId = prevDataset.id
 
     return (
-        <Container className={classes.root}>
+        <Container sx={{ mt: 4 }}>
             <Typography variant="h3" align="center" gutterBottom>
                 {dataset.name}
             </Typography>
@@ -129,7 +49,13 @@ function DatasetDetails() {
                 {dataset.description}
             </Typography>
 
-            <Box className={classes.actions}>
+            <Box
+                sx={{
+                    mt: 1,
+                    mb: 1,
+                    textAlign: 'center',
+                }}
+            >
                 <Button
                     startIcon={<CloudDownloadIcon />}
                     variant="contained"
@@ -140,39 +66,90 @@ function DatasetDetails() {
                 </Button>
             </Box>
 
-            <Box className={classes.samples}>
+            <Box sx={{ textAlign: 'center' }}>
                 {dataset.sampleUrls.map((sampleUrl, idx) => (
                     <img
                         key={idx + sampleUrl}
                         src={sampleUrl}
                         alt={`sample-item-${idx}`}
-                        className={classes.sample}
+                        style={{
+                            display: 'inline-block',
+                            width: '256px',
+                            margin: '2px 2px',
+                        }}
                     />
                 ))}
             </Box>
 
-            <Paper className={classes.moreInfo}>
-                <Box className={classes.moreInfo__row}>
-                    <Box className={`${classes.moreInfo__col1} ${classes.moreInfo__cell}`}>
-                        <Typography className={classes.moreInfo__col1__text}>
+            <Paper
+                sx={{
+                    width: 'fit-content',
+                    maxWidth: '100%',
+                    mt: 2,
+                    marginRight: 'auto',
+                    marginBottom: 0,
+                    marginLeft: 'auto',
+                }}
+            >
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        minWidth: '180px',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            width: '160px',
+                            minWidth: '160px',
+                            p: 1,
+                        }}
+                    >
+                        <Typography sx={{ fontWeight: 800 }}>
                             License
                         </Typography>
                     </Box>
-                    <Box className={classes.moreInfo__cell}>
-                        <Typography className={classes.moreInfo__col2__text}>
+                    <Box sx={{ p: 1 }}>
+                        <Typography sx={{
+                            wordBreak: 'break-word',
+                            cursor: 'pointer',
+                        }}
+                        >
                             {dataset.license}
                         </Typography>
                     </Box>
                 </Box>
                 <Divider />
-                <Box className={classes.moreInfo__row}>
-                    <Box className={`${classes.moreInfo__col1} ${classes.moreInfo__cell}`}>
-                        <Typography className={classes.moreInfo__col1__text}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        minWidth: '180px',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            width: '160px',
+                            minWidth: '160px',
+                            p: 1,
+                        }}
+                    >
+                        <Typography sx={{ fontWeight: 800 }}>
                             Version
                         </Typography>
                     </Box>
-                    <Box className={classes.moreInfo__cell}>
-                        <Typography className={classes.moreInfo__col2__text}>
+                    <Box sx={{ p: 1 }}>
+                        <Typography sx={{
+                            wordBreak: 'break-word',
+                            cursor: 'pointer',
+                        }}
+                        >
                             {dataset.version}
                             &nbsp;
                             {String(new Date(dataset.updatedAt).getFullYear()).substr(-2)}
@@ -184,27 +161,65 @@ function DatasetDetails() {
                     </Box>
                 </Box>
                 <Divider />
-                <Box className={classes.moreInfo__row}>
-                    <Box className={`${classes.moreInfo__col1} ${classes.moreInfo__cell}`}>
-                        <Typography className={classes.moreInfo__col1__text}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        minWidth: '180px',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            width: '160px',
+                            minWidth: '160px',
+                            p: 1,
+                        }}
+                    >
+                        <Typography sx={{ fontWeight: 800 }}>
                             Images
                         </Typography>
                     </Box>
-                    <Box className={classes.moreInfo__cell}>
-                        <Typography className={classes.moreInfo__col2__text}>
+                    <Box sx={{ p: 1 }}>
+                        <Typography sx={{
+                            wordBreak: 'break-word',
+                            cursor: 'pointer',
+                        }}
+                        >
                             {dataset.itemsNumber}
                         </Typography>
                     </Box>
                 </Box>
                 <Divider />
-                <Box className={classes.moreInfo__row}>
-                    <Box className={`${classes.moreInfo__col1} ${classes.moreInfo__cell}`}>
-                        <Typography className={classes.moreInfo__col1__text}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        minWidth: '180px',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            width: '160px',
+                            minWidth: '160px',
+                            p: 1,
+                        }}
+                    >
+                        <Typography sx={{ fontWeight: 800 }}>
                             Resolution
                         </Typography>
                     </Box>
-                    <Box className={classes.moreInfo__cell}>
-                        <Typography className={classes.moreInfo__col2__text}>
+                    <Box sx={{ p: 1 }}>
+                        <Typography sx={{
+                            wordBreak: 'break-word',
+                            cursor: 'pointer',
+                        }}
+                        >
                             {dataset.resolution.width}
                             &nbsp;x&nbsp;
                             {dataset.resolution.height}
@@ -212,47 +227,98 @@ function DatasetDetails() {
                     </Box>
                 </Box>
                 <Divider />
-                <Box className={classes.moreInfo__row}>
-                    <Box className={`${classes.moreInfo__col1} ${classes.moreInfo__cell}`}>
-                        <Typography className={classes.moreInfo__col1__text}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        minWidth: '180px',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            width: '160px',
+                            minWidth: '160px',
+                            p: 1,
+                        }}
+                    >
+                        <Typography sx={{ fontWeight: 800 }}>
                             Format
                         </Typography>
                     </Box>
-                    <Box className={classes.moreInfo__cell}>
-                        <Typography className={classes.moreInfo__col2__text}>
+                    <Box sx={{ p: 1 }}>
+                        <Typography sx={{
+                            wordBreak: 'break-word',
+                            cursor: 'pointer',
+                        }}
+                        >
                             {dataset.imageFormat}
                         </Typography>
                     </Box>
                 </Box>
                 <Divider />
-                <Box className={classes.moreInfo__row}>
-                    <Box className={`${classes.moreInfo__col1} ${classes.moreInfo__cell}`}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        minWidth: '180px',
+                    }}
+                >
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        width: '160px',
+                        minWidth: '160px',
+                        p: 1,
+                    }}
+                    >
                         {
                             dataset.authors.length === 1
-                                ? <PersonIcon className={classes.moreInfo__col1__icon} />
-                                : <People className={classes.moreInfo__col1__icon} />
+                                ? <PersonIcon sx={{ pr: 1 }} />
+                                : <People sx={{ pr: 1 }} />
                         }
-                        <Typography className={classes.moreInfo__col1__text}>
+                        <Typography sx={{ fontWeight: 800 }}>
                             {dataset.authors.length === 1 ? 'Author' : 'Authors'}
                         </Typography>
                     </Box>
-                    <Box className={classes.moreInfo__cell}>
+                    <Box sx={{ p: 1 }}>
                         <Typography>
                             {dataset.authors.join(', ')}
                         </Typography>
                     </Box>
                 </Box>
                 <Divider />
-                <Box className={classes.moreInfo__row}>
-                    <Box className={`${classes.moreInfo__col1} ${classes.moreInfo__cell}`}>
-                        <OpenInNewIcon className={classes.moreInfo__col1__icon} />
-                        <Typography className={classes.moreInfo__col1__text}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        minWidth: '180px',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            width: '160px',
+                            minWidth: '160px',
+                            p: 1,
+                        }}
+                    >
+                        <OpenInNewIcon sx={{ pr: 1 }} />
+                        <Typography sx={{ fontWeight: 800 }}>
                             External URL
                         </Typography>
                     </Box>
-                    <Box className={classes.moreInfo__cell}>
+                    <Box sx={{ p: 1 }}>
                         <Typography
-                            className={classes.moreInfo__col2__text}
+                            sx={{
+                                wordBreak: 'break-word',
+                                cursor: 'pointer',
+                            }}
                             onClick={() => window.open(dataset.externalUrl)}
                         >
                             {dataset.externalUrl}
@@ -260,29 +326,58 @@ function DatasetDetails() {
                     </Box>
                 </Box>
                 <Divider />
-                <Box className={classes.moreInfo__row}>
-                    <Box className={`${classes.moreInfo__col1} ${classes.moreInfo__cell}`}>
-                        <CloudDownloadIcon className={classes.moreInfo__col1__icon} />
-                        <Typography className={classes.moreInfo__col1__text}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        minWidth: '180px',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            width: '160px',
+                            minWidth: '160px',
+                            p: 1,
+                        }}
+                    >
+                        <CloudDownloadIcon sx={{ pr: 1 }} />
+                        <Typography sx={{ fontWeight: 800 }}>
                             Downloads
                         </Typography>
                     </Box>
-                    <Box className={classes.moreInfo__cell}>
-                        <Typography className={classes.moreInfo__col2__text}>
+                    <Box sx={{ p: 1 }}>
+                        <Typography sx={{
+                            wordBreak: 'break-word',
+                            cursor: 'pointer',
+                        }}
+                        >
                             {dataset.downloads}
                         </Typography>
                     </Box>
                 </Box>
             </Paper>
 
-            <Paper className={classes.tags}>
+            <Paper
+                sx={{
+                    width: 'fit-content',
+                    minWidth: '180px',
+                    mt: 2,
+                    marginRight: 'auto',
+                    marginBottom: 0,
+                    marginLeft: 'auto',
+                    p: 1,
+                }}
+            >
                 {dataset.tags.map((tag, idx) => (
                     <Chip
                         key={idx}
                         label={tag}
                         size="small"
                         variant="outlined"
-                        className={classes.tag}
+                        sx={{ m: 0.25 }}
                     />
                 ))}
             </Paper>
@@ -290,7 +385,14 @@ function DatasetDetails() {
             <ButtonGroup
                 aria-label="prev/next navigation group"
                 size="small"
-                className={classes.navButtonGroup}
+                sx={{
+                    display: 'block',
+                    width: 'fit-content',
+                    mt: 2,
+                    marginRight: 'auto',
+                    marginBottom: 0,
+                    marginLeft: 'auto',
+                }}
             >
                 <Button
                     disabled={!items.length}

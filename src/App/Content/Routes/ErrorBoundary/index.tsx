@@ -1,11 +1,8 @@
 import { Component } from 'react'
 import PropTypes, { InferProps } from 'prop-types'
-
-import { withStyles } from '@material-ui/core/styles'
-
-import Container from '@material-ui/core/Container'
-import Divider from '@material-ui/core/Divider'
-import Typography from '@material-ui/core/Typography'
+import Container from '@mui/material/Container'
+import Divider from '@mui/material/Divider'
+import Typography from '@mui/material/Typography'
 
 class ErrorBoundary extends Component<InferProps<typeof ErrorBoundary.propTypes>, any> {
     // eslint-disable-next-line react/static-property-placement
@@ -14,7 +11,6 @@ class ErrorBoundary extends Component<InferProps<typeof ErrorBoundary.propTypes>
             PropTypes.arrayOf(PropTypes.node),
             PropTypes.node,
         ]).isRequired,
-        classes: PropTypes.object.isRequired,
     }
 
     constructor(props: any) {
@@ -46,14 +42,24 @@ class ErrorBoundary extends Component<InferProps<typeof ErrorBoundary.propTypes>
         // You can render any custom fallback UI
         return (
             <Container>
-                <Typography variant="h3" className={this.props.classes.title}>
+                <Typography
+                    variant="h3"
+                    sx={{
+                        mt: 6,
+                        color: (theme) => theme.palette.error.dark,
+                    }}
+                >
                     Something went wrong!
                 </Typography>
-                <Typography variant="subtitle1" gutterBottom className={this.props.classes.subtitle}>
+                <Typography
+                    variant="subtitle1"
+                    gutterBottom
+                    sx={{ color: (theme) => theme.palette.error.dark }}
+                >
                     Please try again later or contact support
                 </Typography>
                 <Divider />
-                <Typography variant="body1" className={this.props.classes.error}>
+                <Typography variant="body1" sx={{ color: (theme) => theme.palette.error.main }}>
                     {String(this.state.error)}
                 </Typography>
             </Container>
@@ -61,15 +67,4 @@ class ErrorBoundary extends Component<InferProps<typeof ErrorBoundary.propTypes>
     }
 }
 
-export default withStyles((theme) => ({
-    error: {
-        color: theme.palette.error.main,
-    },
-    subtitle: {
-        color: theme.palette.error.dark,
-    },
-    title: {
-        marginTop: theme.spacing(6),
-        color: theme.palette.error.dark,
-    },
-}))(ErrorBoundary)
+export default ErrorBoundary

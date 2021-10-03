@@ -1,82 +1,19 @@
 import { Redirect, useHistory, useParams } from 'react-router-dom'
-
-import { makeStyles } from '@material-ui/core/styles'
-
-import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Container from '@material-ui/core/Container'
-import Divider from '@material-ui/core/Divider'
-import People from '@material-ui/icons/People'
-import PersonIcon from '@material-ui/icons/Person'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
-import HomeIcon from '@material-ui/icons/Home'
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore'
-import NavigateNextIcon from '@material-ui/icons/NavigateNext'
-import OpenInNewIcon from '@material-ui/icons/OpenInNew'
-import VisibilityIcon from '@material-ui/icons/Visibility'
-
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import ButtonGroup from '@mui/material/ButtonGroup'
+import Container from '@mui/material/Container'
+import Divider from '@mui/material/Divider'
+import People from '@mui/icons-material/People'
+import PersonIcon from '@mui/icons-material/Person'
+import Paper from '@mui/material/Paper'
+import Typography from '@mui/material/Typography'
+import HomeIcon from '@mui/icons-material/Home'
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext'
+import OpenInNewIcon from '@mui/icons-material/OpenInNew'
+import VisibilityIcon from '@mui/icons-material/Visibility'
 import useGalleryItems from '../../../../lib/hooks/use-gallery-items'
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        marginTop: theme.spacing(4),
-    },
-
-    artwork: {
-        display: 'block',
-        width: 512,
-        maxWidth: '100%',
-        marginTop: theme.spacing(2),
-        marginRight: 'auto',
-        marginBottom: 0,
-        marginLeft: 'auto',
-    },
-
-    moreInfo: {
-        width: 'fit-content',
-        maxWidth: '100%',
-        marginTop: theme.spacing(2),
-        marginRight: 'auto',
-        marginBottom: 0,
-        marginLeft: 'auto',
-    },
-    moreInfo__row: {
-        display: 'flex',
-        flexDirection: 'row',
-        minWidth: 180,
-    },
-    moreInfo__col1: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        width: 160,
-        minWidth: 160,
-    },
-    moreInfo__col1__icon: {
-        paddingRight: theme.spacing(1),
-    },
-    moreInfo__col1__text: {
-        fontWeight: 800,
-    },
-    moreInfo__col2__text: {
-        wordBreak: 'break-word',
-        cursor: 'pointer',
-    },
-    moreInfo__cell: {
-        padding: theme.spacing(1),
-    },
-
-    navButtonGroup: {
-        display: 'block',
-        width: 'fit-content',
-        marginTop: theme.spacing(2),
-        marginRight: 'auto',
-        marginBottom: 0,
-        marginLeft: 'auto',
-    },
-}))
 
 function GalleryItemDetails() {
     const history = useHistory()
@@ -84,8 +21,6 @@ function GalleryItemDetails() {
 
     const items = useGalleryItems()
     const galleryItemIndex = items.findIndex((item) => item.id === galleryItemId)
-
-    const classes: any = useStyles()
 
     if (galleryItemIndex < 0) {
         return <Redirect to={{ pathname: '/gallery' }} />
@@ -105,7 +40,7 @@ function GalleryItemDetails() {
     const prevGalleryItemId = prevGalleryItem.id
 
     return (
-        <Container className={classes.root}>
+        <Container sx={{ mt: 4 }}>
             <Typography variant="h3" align="center" gutterBottom>
                 {galleryItem.name}
             </Typography>
@@ -116,38 +51,88 @@ function GalleryItemDetails() {
             <img
                 src={galleryItem.url}
                 alt="gallery-item"
-                className={classes.artwork}
+                style={{
+                    display: 'block',
+                    width: '512px',
+                    maxWidth: '100%',
+                    marginTop: '16px',
+                    marginRight: 'auto',
+                    marginBottom: 0,
+                    marginLeft: 'auto',
+                }}
             />
 
-            <Paper className={classes.moreInfo}>
-                <Box className={classes.moreInfo__row}>
-                    <Box className={`${classes.moreInfo__col1} ${classes.moreInfo__cell}`}>
+            <Paper
+                sx={{
+                    width: 'fit-content',
+                    maxWidth: '100%',
+                    mt: 2,
+                    marginRight: 'auto',
+                    marginBottom: 0,
+                    marginLeft: 'auto',
+                }}
+            >
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        minWidth: '180px',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            width: '160px',
+                            minWidth: '160px',
+                            p: 1,
+                        }}
+                    >
                         {
                             galleryItem.authors.length === 1
-                                ? <PersonIcon className={classes.moreInfo__col1__icon} />
-                                : <People className={classes.moreInfo__col1__icon} />
+                                ? <PersonIcon sx={{ pr: 1 }} />
+                                : <People sx={{ pr: 1 }} />
                         }
-                        <Typography className={classes.moreInfo__col1__text}>
+                        <Typography sx={{ fontWeight: 800 }}>
                             {galleryItem.authors.length === 1 ? 'Author' : 'Authors'}
                         </Typography>
                     </Box>
-                    <Box className={classes.moreInfo__cell}>
+                    <Box sx={{ p: 1 }}>
                         <Typography>
                             {galleryItem.authors.join(', ')}
                         </Typography>
                     </Box>
                 </Box>
                 <Divider />
-                <Box className={classes.moreInfo__row}>
-                    <Box className={`${classes.moreInfo__col1} ${classes.moreInfo__cell}`}>
-                        <OpenInNewIcon className={classes.moreInfo__col1__icon} />
-                        <Typography className={classes.moreInfo__col1__text}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        minWidth: '180px',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            width: '160px',
+                            minWidth: '160px',
+                            p: 1,
+                        }}
+                    >
+                        <OpenInNewIcon sx={{ pr: 1 }} />
+                        <Typography sx={{ fontWeight: 800 }}>
                             External URL
                         </Typography>
                     </Box>
-                    <Box className={classes.moreInfo__cell}>
+                    <Box sx={{ p: 1 }}>
                         <Typography
-                            className={classes.moreInfo__col2__text}
+                            sx={{
+                                wordBreak: 'break-word',
+                                cursor: 'pointer',
+                            }}
                             onClick={() => window.open(galleryItem.externalUrl)}
                         >
                             {galleryItem.externalUrl}
@@ -155,15 +140,35 @@ function GalleryItemDetails() {
                     </Box>
                 </Box>
                 <Divider />
-                <Box className={classes.moreInfo__row}>
-                    <Box className={`${classes.moreInfo__col1} ${classes.moreInfo__cell}`}>
-                        <VisibilityIcon className={classes.moreInfo__col1__icon} />
-                        <Typography className={classes.moreInfo__col1__text}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        minWidth: '180px',
+                    }}
+                >
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            width: '160px',
+                            minWidth: '160px',
+                            p: 1,
+                        }}
+                    >
+                        <VisibilityIcon sx={{ pr: 1 }} />
+                        <Typography sx={{ fontWeight: 800 }}>
                             Views
                         </Typography>
                     </Box>
-                    <Box className={classes.moreInfo__cell}>
-                        <Typography className={classes.moreInfo__col2__text}>
+                    <Box sx={{ p: 1 }}>
+                        <Typography
+                            sx={{
+                                wordBreak: 'break-word',
+                                cursor: 'pointer',
+                            }}
+                        >
                             {galleryItem.views}
                         </Typography>
                     </Box>
@@ -173,7 +178,14 @@ function GalleryItemDetails() {
             <ButtonGroup
                 aria-label="prev/next navigation group"
                 size="small"
-                className={classes.navButtonGroup}
+                sx={{
+                    display: 'block',
+                    width: 'fit-content',
+                    mt: 2,
+                    marginRight: 'auto',
+                    marginBottom: 0,
+                    marginLeft: 'auto',
+                }}
             >
                 <Button
                     disabled={!items.length}

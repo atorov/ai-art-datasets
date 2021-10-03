@@ -1,30 +1,13 @@
 import { useEffect, useState } from 'react'
-
-import { makeStyles } from '@material-ui/core/styles'
-
-import Container from '@material-ui/core/Container'
-import Paper from '@material-ui/core/Paper'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableRow from '@material-ui/core/TableRow'
-
+import Container from '@mui/material/Container'
+import Paper from '@mui/material/Paper'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableRow from '@mui/material/TableRow'
 import useCall from '../../../../../lib/api/hooks/use-call'
-
 import { useAuthContext } from '../../../../auth-context/Provider'
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    table: {
-        width: 340,
-    },
-}));
 
 function UserDetails() {
     const [authState] = useAuthContext()
@@ -32,8 +15,6 @@ function UserDetails() {
     const call = useCall()
 
     const [user, setUser] = useState({} as any)
-
-    const classes = useStyles()
 
     useEffect(() => {
         (async () => {
@@ -55,8 +36,15 @@ function UserDetails() {
     } as any)[user.role] || 'N/A'
 
     return (
-        <Container className={classes.root}>
-            <TableContainer component={Paper} className={classes.table}>
+        <Container
+            sx={{
+                mt: 8,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+            }}
+        >
+            <TableContainer component={Paper} sx={{ width: '340px' }}>
                 <Table aria-label="user details table">
                     <TableBody>
                         <TableRow>

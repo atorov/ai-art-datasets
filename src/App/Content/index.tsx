@@ -1,44 +1,16 @@
 import { useEffect } from 'react'
-
 import { BrowserRouter } from 'react-router-dom'
-
-import { makeStyles } from '@material-ui/core/styles'
-import LinearProgress from '@material-ui/core/LinearProgress'
-
+import Box from '@mui/material/Box'
+import LinearProgress from '@mui/material/LinearProgress'
 import request from '../../lib/api/request'
 import type { TDataset } from '../../types/TDataset'
-
 import { useAppContext } from '../app-context/Provider'
 import { useAuthContext } from '../auth-context/Provider'
-
 import Footer from './Footer'
 import Routes from './Routes'
 import TopBar from './TopBar'
 
 declare const APP_NAME: string
-
-const useStyles = makeStyles((theme) => ({
-    appMain: () => ({
-        flexGrow: 1,
-        padding: 0,
-        paddingBottom: theme.spacing(8),
-        margin: 0,
-        overflow: 'auto',
-    }),
-    appContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        boxSizing: 'border-box',
-        width: '100%',
-        height: '100%',
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
-        margin: 0,
-        padding: 0,
-    },
-}))
 
 function Content() {
     const [appState, appDispatch] = useAppContext()
@@ -46,8 +18,6 @@ function Content() {
 
     const [authState] = useAuthContext()
     console.log('::: authState:', authState)
-
-    const classes: any = useStyles({ topBarHeight: appState.ui.topBar.height })
 
     // Init
     useEffect(() => {
@@ -187,15 +157,37 @@ function Content() {
     return (
         // <BrowserRouter basename="/ai-art-datasets">
         <BrowserRouter>
-            <div className={classes.appContainer}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    boxSizing: 'border-box',
+                    width: '100%',
+                    height: '100%',
+                    top: 0,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    margin: 0,
+                    padding: 0,
+                }}
+            >
                 <TopBar />
-
-                <main id="app-main" className={classes.appMain}>
+                <Box
+                    id="app-main"
+                    component="main"
+                    sx={{
+                        flexGrow: 1,
+                        padding: 0,
+                        pb: 8,
+                        margin: 0,
+                        overflow: 'auto',
+                    }}
+                >
                     {appState.status === ':READY:' ? <Routes /> : <LinearProgress />}
-                </main>
-
+                </Box>
                 <Footer />
-            </div>
+            </Box>
         </BrowserRouter>
     )
 }

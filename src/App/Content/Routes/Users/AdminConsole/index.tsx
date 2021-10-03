@@ -1,18 +1,10 @@
 import { useEffect, useState } from 'react'
-
 import { useHistory } from 'react-router-dom'
-
-import { makeStyles } from '@material-ui/core/styles'
-
-import Container from '@material-ui/core/Container'
-
+import Container from '@mui/material/Container'
 import ReactJson from 'react-json-view'
-
 import request from '../../../../../lib/api/request'
 import useAuth from '../../../../../lib/hooks/use-auth'
-
 import { useAuthContext } from '../../../../auth-context/Provider'
-
 import getFlag from '../../../../../lib/misc/get-flag'
 
 declare const APP_NAME: string
@@ -46,7 +38,7 @@ function mergeDeep(target: any, source: any) {
             }
         });
     }
-    return output;
+    return output
 }
 
 function convertTrackerDataToObject(data: any) {
@@ -55,12 +47,6 @@ function convertTrackerDataToObject(data: any) {
     const objectArray = arrays.map((array) => (reduceArrayToObject(array)))
     return objectArray.reduce((acc, item) => mergeDeep(acc, item), {})
 }
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        marginTop: theme.spacing(8),
-    },
-}));
 
 function AdminConsole() {
     const [authState] = useAuthContext()
@@ -72,8 +58,6 @@ function AdminConsole() {
 
     const [trackerData, setTrackerData] = useState({} as any)
     const [loadingClientIpInfo, setLoadingClientIpInfo] = useState(false)
-
-    const classes = useStyles()
 
     useEffect(() => {
         if (isAdmin) {
@@ -102,7 +86,7 @@ function AdminConsole() {
     }, [auth, history, isAdmin])
 
     return (
-        <Container className={classes.root}>
+        <Container sx={{ mt: 8 }}>
             <ReactJson
                 src={trackerData}
                 displayDataTypes={false}

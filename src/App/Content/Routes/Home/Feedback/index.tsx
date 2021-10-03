@@ -1,32 +1,17 @@
 import { useHistory } from 'react-router-dom'
-
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import Typography from '@material-ui/core/Typography'
-import TwitterIcon from '@material-ui/icons/Twitter'
-import { Alert, AlertTitle } from '@material-ui/lab'
-
-const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        marginTop: theme.spacing(4),
-        marginBottom: theme.spacing(4),
-    },
-
-    text: {
-        cursor: 'pointer',
-    },
-}))
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import TwitterIcon from '@mui/icons-material/Twitter'
+import { Alert, AlertTitle } from '@mui/lab'
 
 function Feedback() {
     const history = useHistory()
 
-    const classes: any = useStyles()
-
     return (
-        <Container className={classes.root}>
+        <Container sx={{ my: 4 }}>
             <Alert
                 severity="success"
-                className={classes.text}
+                sx={{ cursor: 'pointer' }}
                 onClick={() => history.push('/feedback/redirect')}
             >
                 <AlertTitle>
@@ -42,10 +27,7 @@ function Feedback() {
                 <br />
 
                 <TwitterIcon />
-                <Typography
-                    component="p"
-                    variant="caption"
-                >
+                <Typography component="p" variant="caption">
                     Confusion Circles
                     (@confusion.circles)
                 </Typography>
