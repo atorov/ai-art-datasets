@@ -81,6 +81,7 @@ function Datasets() {
                             },
                         })
                     }}
+                    size="large"
                 >
                     {debSearchTermStatus === ':READY:' ? <ClearIcon /> : <HourglassEmptyIcon />}
                 </IconButton>
@@ -96,6 +97,7 @@ function Datasets() {
                     aria-label="search"
                     sx={{ padding: '10px' }}
                     onClick={(event) => event.preventDefault()}
+                    size="large"
                 >
                     <SearchIcon />
                 </IconButton>

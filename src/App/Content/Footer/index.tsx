@@ -1,7 +1,6 @@
 import { Link, useHistory } from 'react-router-dom'
 import { useTheme, styled } from '@mui/material/styles'
 import Container from '@mui/material/Container'
-import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import { useAppContext } from '../../app-context/Provider'
@@ -52,11 +51,6 @@ function Footer() {
                 © Atorov 2020-2021
             </Typography>
 
-            <Divider
-                orientation="vertical"
-                flexItem
-                sx={{ margin: `0 ${theme.spacing(1)}px` }}
-            />
             <Typography
                 component="p"
                 variant="caption"
@@ -64,14 +58,14 @@ function Footer() {
                 onClick={() => history.push('/feedback/redirect')}
             >
                 &nbsp;
-                <TwitterIcon sx={{ fontSize: '14px' }} />
+                <TwitterIcon
+                    sx={{
+                        margin: '0 8px',
+                        fontSize: '14px',
+                    }}
+                />
             </Typography>
 
-            <Divider
-                orientation="vertical"
-                flexItem
-                sx={{ margin: `0 ${theme.spacing(1)}px` }}
-            />
             <StyledLink to="/tos">
                 <Typography
                     component="p"

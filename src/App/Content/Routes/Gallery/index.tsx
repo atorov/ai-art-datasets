@@ -79,6 +79,7 @@ function Gallery() {
                             },
                         })
                     }}
+                    size="large"
                 >
                     {debSearchTermStatus === ':READY:' ? <ClearIcon /> : <HourglassEmptyIcon />}
                 </IconButton>
@@ -94,6 +95,7 @@ function Gallery() {
                     aria-label="search"
                     sx={{ p: '10px' }}
                     onClick={(event) => event.preventDefault()}
+                    size="large"
                 >
                     <SearchIcon />
                 </IconButton>

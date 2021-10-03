@@ -1,4 +1,8 @@
-import { createTheme, ThemeProvider } from '@mui/material/styles'
+import {
+    createTheme,
+    ThemeProvider,
+    StyledEngineProvider,
+} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline'
 
 import AppContextProvider from './app-context/Provider'
@@ -21,15 +25,17 @@ const theme = createTheme({
 
 function App() {
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            <AppContextProvider>
-                <AuthContextProvider>
-                    <Content />
-                </AuthContextProvider>
-            </AppContextProvider>
-        </ThemeProvider>
-    )
+        <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <AppContextProvider>
+                    <AuthContextProvider>
+                        <Content />
+                    </AuthContextProvider>
+                </AppContextProvider>
+            </ThemeProvider>
+        </StyledEngineProvider>
+    );
 }
 
 export default App
