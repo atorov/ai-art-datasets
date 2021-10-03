@@ -1,4 +1,4 @@
-import { createTheme, MuiThemeProvider } from '@material-ui/core/styles'
+import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 import AppContextProvider from './app-context/Provider'
@@ -21,14 +21,14 @@ const theme = createTheme({
 
 function App() {
     return (
-        <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
             <CssBaseline />
             <AppContextProvider>
                 <AuthContextProvider>
                     <Content />
                 </AuthContextProvider>
             </AppContextProvider>
-        </MuiThemeProvider>
+        </ThemeProvider>
     )
 }
 
