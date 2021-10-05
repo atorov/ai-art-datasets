@@ -1,4 +1,4 @@
 # https://github.com/webpack/webpack-dev-server/issues/2758
 > 5% # can add an human readable comment
 Last 2 versions # Or last two versions
-IE 11
+not IE 11
