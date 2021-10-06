@@ -1,5 +1,6 @@
+import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
 import Container from '@mui/material/Container'
-import { Alert, AlertTitle } from '@mui/lab'
 
 function Tos() {
     return (

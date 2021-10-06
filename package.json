@@ -1,6 +1,6 @@
 {
   "name": "ai-art-datasets",
-  "version": "3.0.0-snapshot",
+  "version": "3.0.0",
   "private": true,
   "description": "AI Art Datasets",
   "repository": {
