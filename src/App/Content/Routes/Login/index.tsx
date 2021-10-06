@@ -84,7 +84,6 @@ function Login() {
                         name="username"
                         autoComplete="username"
                         label="Username"
-                        variant="outlined"
                         margin="normal"
                         fullWidth
                         autoFocus
@@ -97,7 +96,6 @@ function Login() {
                         name="password"
                         autoComplete="current-password"
                         label="Password"
-                        variant="outlined"
                         margin="normal"
                         fullWidth
                         type="password"

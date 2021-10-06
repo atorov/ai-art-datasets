@@ -1,8 +1,9 @@
 import { useHistory } from 'react-router-dom'
+import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import TwitterIcon from '@mui/icons-material/Twitter'
-import { Alert, AlertTitle } from '@mui/lab'
 
 function Feedback() {
     const history = useHistory()
