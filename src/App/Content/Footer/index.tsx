@@ -1,11 +1,11 @@
 import { Link, useHistory } from 'react-router-dom'
-import { useTheme, styled } from '@mui/material/styles'
+import { useTheme, styled, Theme } from '@mui/material/styles'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import { useAppContext } from '../../app-context/Provider'
 
-const StyledLink = styled(Link)(({ theme }) => ({
+const StyledLink = styled(Link)(({ theme }: { theme: Theme }) => ({
     textDecoration: 'none',
     color: theme.palette.text.primary,
     '&:visited': {
