@@ -1,10 +1,9 @@
 import {
     useEffect,
-    useRef,
     useState,
 } from 'react'
 
-import { useHistory } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import { useAuthContext } from '../../../App/auth-context/Provider'
 
@@ -16,21 +15,13 @@ import reformatData from './reformat-data'
 declare const APP_NAME: string
 
 function useTracker() {
-    const unlistenRef = useRef(() => {})
-
     const [authState] = useAuthContext()
-
-    const history = useHistory()
-
+    const location = useLocation()
     const [data, setData] = useState(() => collectData(authState.user))
 
     useEffect(() => {
-        unlistenRef.current = history.listen(() => {
-            setData(collectData(authState.user))
-        })
-
-        return () => unlistenRef.current()
-    }, [authState.user, history])
+        setData(collectData(authState.user))
+    }, [authState.user, location.pathname])
 
     useEffect(() => {
         setData(collectData(authState.user))

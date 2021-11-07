@@ -4,7 +4,7 @@ import { useAuthContext } from '../../../App/auth-context/Provider'
 
 import checkAuth from './check-auth'
 
-function useAuth() {
+function useAuth(): [boolean, (goAuth: any, data?: any) => void] {
     const [authState, authDispatch] = useAuthContext()
 
     const auth = useCallback((goAuth, data) => {

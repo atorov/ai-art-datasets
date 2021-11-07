@@ -1,4 +1,4 @@
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useTheme, styled, Theme } from '@mui/material/styles'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
@@ -22,7 +22,7 @@ const StyledLink = styled(Link)(({ theme }: { theme: Theme }) => ({
 function Footer() {
     const [appState] = useAppContext()
 
-    const history = useHistory()
+    const navigate = useNavigate()
     const theme = useTheme()
 
     return (
@@ -46,7 +46,7 @@ function Footer() {
                 component="p"
                 variant="caption"
                 sx={{ cursor: 'pointer' }}
-                onClick={() => history.push('/feedback/redirect')}
+                onClick={() => navigate('/feedback/redirect')}
             >
                 © Atorov 2020-2021
             </Typography>
@@ -55,7 +55,7 @@ function Footer() {
                 component="p"
                 variant="caption"
                 sx={{ cursor: 'pointer' }}
-                onClick={() => history.push('/feedback/redirect')}
+                onClick={() => navigate('/feedback/redirect')}
             >
                 &nbsp;
                 <TwitterIcon

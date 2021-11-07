@@ -1,4 +1,4 @@
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography'
 import useAuth from '../../../lib/hooks/use-auth'
 
 function TopBar() {
-    const history = useHistory()
+    const navigate = useNavigate()
     const [isAuth] = useAuth()
 
     return (
@@ -37,7 +37,7 @@ function TopBar() {
                     {isAuth ? (
                         <Button
                             color="inherit"
-                            onClick={() => history.push('/logout')}
+                            onClick={() => navigate('/logout')}
                         >
                             Logout
                         </Button>

@@ -6,8 +6,8 @@ import request from '../../lib/api/request'
 import type { TDataset } from '../../types/TDataset'
 import { useAppContext } from '../app-context/Provider'
 import { useAuthContext } from '../auth-context/Provider'
+import AppRoutes from './AppRoutes'
 import Footer from './Footer'
-import Routes from './Routes'
 import TopBar from './TopBar'
 
 declare const APP_NAME: string
@@ -184,7 +184,7 @@ function Content() {
                         overflow: 'auto',
                     }}
                 >
-                    {appState.status === ':READY:' ? <Routes /> : <LinearProgress />}
+                    {appState.status === ':READY:' ? <AppRoutes /> : <LinearProgress />}
                 </Box>
                 <Footer />
             </Box>

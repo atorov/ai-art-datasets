@@ -11,6 +11,7 @@ module.exports = {
     globals: {
         APP_NAME: 'readonly',
         APP_VERSION: 'readonly',
+        JSX: true,
         MODE: 'readonly',
         NODE_ENV: 'readonly',
     },
