@@ -1,55 +1,6 @@
-import type { TDataset } from '../../types/TDataset'
-import type { TGalleryItem } from '../../types/TGalleryItem'
-import type { THomeNavItems } from '../../types/THomeNavItems'
+import type { TAppState } from './types'
 
-type TInitStateUi = {
-    footer: {
-        height: number
-    }
-    topBar: {
-        height: number
-        }
-    xtheme: {
-        palette: any // TODO:
-    }
-}
-
-export type TInitState = {
-    status: string
-    ui: TInitStateUi
-    datasets: {
-        status: string
-        data: TDataset[]
-        sfs: {
-            minItemsNumber: number
-            minItemsResolution: number
-            order: string
-            searchTerm: string
-            selectedAuthors: string[]
-            selectedImageFormats: string[]
-            selectedLicenses: string[]
-        }
-    }
-    gallery: {
-        status: string
-        data: TGalleryItem[]
-        sfs: {
-            order: string
-            searchTerm: string
-            selectedAuthors: string[]
-        }
-    }
-    homeNavItems: {
-        status: string
-        data: THomeNavItems[]
-    }
-    xsettings: {
-        status: string
-        data: any // TODO:
-    }
-}
-
-const initState: TInitState = {
+const initState: TAppState = {
     status: ':START_INIT:',
 
     ui: {

@@ -1,10 +1,7 @@
 // import initState from './init-state'
-import type { TInitState } from './init-state'
+import type { TAppState, TAppAction } from './types'
 
-function reducer(
-    state: TInitState,
-    action: { type: string, payload?: any },
-): TInitState {
+function reducer(state: TAppState, action: TAppAction): TAppState {
     switch (action.type) {
         // Init
         // case ':appState/INIT:':

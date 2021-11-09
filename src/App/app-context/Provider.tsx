@@ -1,23 +1,17 @@
-import {
-    Dispatch,
-    createContext,
-    useContext,
-    useMemo,
-    useReducer,
-} from 'react'
+import * as React from 'react'
 import PropTypes, { InferProps } from 'prop-types'
 
 import initState from './init-state'
-import type { TInitState } from './init-state'
 import reducer from './reducer'
+import type { TAppState, TAppDispatch } from './types'
 
-const defaultContextValue: [TInitState, Dispatch<{ type: string; payload?: any; }>] = [initState, () => { }]
-const Context = createContext(defaultContextValue)
+const defaultContextValue: [TAppState, TAppDispatch] = [initState, () => { }]
+const Context = React.createContext(defaultContextValue)
 Context.displayName = 'AppContext'
 
 function Provider(props: InferProps<typeof Provider.propTypes>) {
-    const [state, dispatch] = useReducer(reducer, initState)
-    const value: typeof defaultContextValue = useMemo(() => [state, dispatch], [state])
+    const [state, dispatch] = React.useReducer(reducer, initState)
+    const value: typeof defaultContextValue = React.useMemo(() => [state, dispatch], [state])
 
     return (
         <Context.Provider value={value} {...props}>
@@ -34,11 +28,11 @@ Provider.propTypes = {
 }
 
 function useAppContext() {
-    const context = useContext(Context)
+    const context = React.useContext(Context)
 
-    // if (context === undefined) {
-    //     throw new Error('Must be used within a Provider')
-    // }
+    if (context === undefined) {
+        throw new Error('Must be used within a Provider')
+    }
 
     return context
 }

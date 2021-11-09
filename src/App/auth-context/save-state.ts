@@ -1,6 +1,6 @@
-import type { TInitState } from './init-state'
+import type { TAuthState } from './types'
 
-function saveState(data: TInitState, itemKey: string) {
+function saveState(data: TAuthState, itemKey: string) {
     try {
         const serialized = JSON.stringify(data)
         sessionStorage.setItem(itemKey, serialized)

@@ -1,11 +1,11 @@
 // https://github.com/webpack-contrib/worker-loader/issues/139
 // https://github.com/nishio/tutorial-webworker-with-react/blob/master/README.md
 
-import type { TInitState } from '../../App/app-context/init-state'
+import type { TAppState } from '../../App/app-context/types'
 
 type TEventData = {
-    allItems: TInitState['gallery']['data']
-    sfs: TInitState['gallery']['sfs']
+    allItems: TAppState['gallery']['data']
+    sfs: TAppState['gallery']['sfs']
 }
 
 let id: number = 0

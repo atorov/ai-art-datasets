@@ -1,6 +1,6 @@
-import type { TInitState } from '../../../App/auth-context/init-state'
+import type { TAuthState } from '../../../App/auth-context/types'
 
-function checkAuth(authData: TInitState) {
+function checkAuth(authData: TAuthState) {
     return !!authData.accessToken
 }
 

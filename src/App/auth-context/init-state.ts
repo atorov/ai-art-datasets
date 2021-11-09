@@ -1,8 +1,5 @@
-export type TInitState = Partial<{
-    accessToken: string;
-    user: any;
-}>
+import type { TAuthState } from './types'
 
-const initState: TInitState = {}
+const initState: TAuthState = {}
 
 export default initState

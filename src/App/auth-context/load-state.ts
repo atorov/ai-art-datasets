@@ -1,7 +1,7 @@
-import type { TInitState } from './init-state'
+import type { TAuthState } from './types'
 
 function loadState(itemKey: string) {
-    let saved: TInitState = {}
+    let saved: TAuthState = {}
     try {
         const serialized = sessionStorage.getItem(itemKey)
         if (serialized) {

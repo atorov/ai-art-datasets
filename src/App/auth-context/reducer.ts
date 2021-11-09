@@ -1,10 +1,7 @@
 import initState from './init-state'
-import type { TInitState } from './init-state'
+import type { TAuthState, TAuthAction } from './types'
 
-function reducer(
-    state: TInitState,
-    action: { type: string, payload?: any },
-): TInitState {
+function reducer(state: TAuthState, action: TAuthAction): TAuthState {
     switch (action.type) {
         // Init
         case ':authState/INIT:':
