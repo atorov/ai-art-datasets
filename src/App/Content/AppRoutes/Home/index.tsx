@@ -13,11 +13,11 @@ import useAuth from '../../../../lib/hooks/use-auth'
 import Tos from '../Tos'
 import Feedback from './Feedback'
 
-function Home() {
+const Home = () => {
     const [appState] = useAppContext()
     const [authState] = useAuthContext()
 
-    const [isAuth]: any = useAuth()
+    const [isAuth] = useAuth()
 
     return (
         <Container sx={{ mt: 4 }}>

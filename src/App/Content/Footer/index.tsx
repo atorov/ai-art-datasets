@@ -19,7 +19,7 @@ const StyledLink = styled(Link)(({ theme }: { theme: Theme }) => ({
     },
 }))
 
-function Footer() {
+const Footer = () => {
     const [appState] = useAppContext()
 
     const navigate = useNavigate()

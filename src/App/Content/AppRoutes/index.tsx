@@ -1,39 +1,33 @@
-import {
-    lazy,
-    Suspense,
-    useEffect,
-} from 'react'
-
+import * as React from 'react'
+import { Suspense } from 'react'
 import {
     Route,
     Routes,
     useLocation,
 } from 'react-router-dom'
-
 import useTracker from '../../../lib/hooks/use-tracker'
-
 import ErrorBoundary from './ErrorBoundary'
 import Fallback from './Fallback'
 import PrivateRoute from './PrivateRoute'
 
-const CFeedbackRedirect = lazy(() => import('./FeedbackRedirect'))
-const CDatasets = lazy(() => import('./Datasets'))
-const CDatasetDetails = lazy(() => import('./DatasetDetails'))
-const CDatasetDownload = lazy(() => import('./DatasetDetails/DatasetDownload'))
-const CGallery = lazy(() => import('./Gallery'))
-const CGalleryItemDetails = lazy(() => import('./GalleryItemDetails'))
-const CHome = lazy(() => import('./Home'))
-const CLogin = lazy(() => import('./Login'))
-const CLogout = lazy(() => import('./Logout'))
-const CTos = lazy(() => import('./Tos'))
-const CAdminConsole = lazy(() => import('./Users/AdminConsole'))
-const CUserDetails = lazy(() => import('./Users/UserDetails'))
-const CUserProfile = lazy(() => import('./Users/Profile'))
+const CFeedbackRedirect = React.lazy(() => import('./FeedbackRedirect'))
+const CDatasets = React.lazy(() => import('./Datasets'))
+const CDatasetDetails = React.lazy(() => import('./DatasetDetails'))
+const CDatasetDownload = React.lazy(() => import('./DatasetDetails/DatasetDownload'))
+const CGallery = React.lazy(() => import('./Gallery'))
+const CGalleryItemDetails = React.lazy(() => import('./GalleryItemDetails'))
+const CHome = React.lazy(() => import('./Home'))
+const CLogin = React.lazy(() => import('./Login'))
+const CLogout = React.lazy(() => import('./Logout'))
+const CTos = React.lazy(() => import('./Tos'))
+const CAdminConsole = React.lazy(() => import('./Users/AdminConsole'))
+const CUserDetails = React.lazy(() => import('./Users/UserDetails'))
+const CUserProfile = React.lazy(() => import('./Users/Profile'))
 
-function AppRoutes() {
+const AppRoutes = () => {
     const location = useLocation()
 
-    useEffect(() => {
+    React.useEffect(() => {
         // window.scrollTo(0, 0))
         // document.querySelector('#app-main').scrollTo(0, 0) // <-- Doesn't work in IE11
 

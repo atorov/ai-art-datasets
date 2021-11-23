@@ -1,6 +1,4 @@
-import {
-    MutableRefObject, useEffect, useRef, useState,
-} from 'react'
+import * as React from 'react'
 
 import type { TGalleryItem } from '../../../types/TGalleryItem'
 
@@ -9,13 +7,11 @@ import { useAppContext } from '../../../App/app-context/Provider'
 import GalleryItemsWorker from '../../../workers/gallery-items/gallery-items.worker'
 
 function useGalleryItems() {
-    const galleryItemsWorker: MutableRefObject<any> = useRef()
-
+    const galleryItemsWorker: React.MutableRefObject<any> = React.useRef()
     const [{ gallery: { data: allItems, sfs } }] = useAppContext()
+    const [resolvedItems, setResolvedItems] = React.useState(() => allItems)
 
-    const [resolvedItems, setResolvedItems] = useState(() => allItems)
-
-    useEffect(() => {
+    React.useEffect(() => {
         galleryItemsWorker.current = new GalleryItemsWorker()
         galleryItemsWorker.current.addEventListener(
             'message',
@@ -33,7 +29,7 @@ function useGalleryItems() {
         }
     }, [])
 
-    useEffect(() => {
+    React.useEffect(() => {
         const data = { allItems, sfs, ts: Date.now() }
         galleryItemsWorker.current.postMessage(data)
     }, [allItems, sfs])

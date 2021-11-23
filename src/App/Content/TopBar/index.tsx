@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import useAuth from '../../../lib/hooks/use-auth'
 
-function TopBar() {
+const TopBar = () => {
     const navigate = useNavigate()
     const [isAuth] = useAuth()
 

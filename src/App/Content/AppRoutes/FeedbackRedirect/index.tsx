@@ -1,13 +1,13 @@
-import { useEffect } from 'react'
+import * as React from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
 import delay from '../../../../lib/utils/delay'
 
-function FeedbackRedirect() {
+const FeedbackRedirect = () => {
     const navigate = useNavigate()
 
-    useEffect(() => {
+    React.useEffect(() => {
         (async () => {
             await delay(550)
             navigate('/')

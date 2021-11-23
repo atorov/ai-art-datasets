@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import * as React from 'react'
 
 type TDebouncedValueStatus = '' | ':READY:' | ':PENDING:'
 
@@ -14,10 +14,10 @@ function useDebounce<TValue>(
         initStatus = '',
     }: TOptions,
 ): [TDebouncedValueStatus, TValue] {
-    const [debouncedValue, setDebouncedValue] = useState(value)
-    const [debouncedValueStatus, setDebouncedValueStatus] = useState(initStatus)
+    const [debouncedValue, setDebouncedValue] = React.useState(value)
+    const [debouncedValueStatus, setDebouncedValueStatus] = React.useState(initStatus)
 
-    useEffect(() => {
+    React.useEffect(() => {
         const handler = setTimeout(() => {
             setDebouncedValue(value)
             setDebouncedValueStatus(':READY:')

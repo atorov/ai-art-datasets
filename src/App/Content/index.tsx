@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import * as React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import LinearProgress from '@mui/material/LinearProgress'
@@ -12,7 +12,7 @@ import TopBar from './TopBar'
 
 declare const APP_NAME: string
 
-function Content() {
+const Content = () => {
     const [appState, appDispatch] = useAppContext()
     console.log('::: appState:', appState)
 
@@ -20,7 +20,7 @@ function Content() {
     console.log('::: authState:', authState)
 
     // Init
-    useEffect(() => {
+    React.useEffect(() => {
         if (appState.status === ':START_INIT:') {
             appDispatch({
                 type: ':appState/status/SET:',

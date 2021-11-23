@@ -1,17 +1,17 @@
-import { MutableRefObject, useEffect, useRef } from 'react'
+import * as React from 'react'
 
 function useEventListener(
     eventName: string,
     handler: Function,
     element: Element | typeof globalThis = window,
 ) {
-    const savedHandler: MutableRefObject<Function> = useRef(() => {})
+    const savedHandler: React.MutableRefObject<Function> = React.useRef(() => {})
 
-    useEffect(() => {
+    React.useEffect(() => {
         savedHandler.current = handler
     }, [handler])
 
-    useEffect(() => {
+    React.useEffect(() => {
         function handleEvent(event: any) {
             savedHandler.current(event)
         }

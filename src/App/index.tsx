@@ -23,19 +23,17 @@ const theme = createTheme({
     },
 })
 
-function App() {
-    return (
-        <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <AppContextProvider>
-                    <AuthContextProvider>
-                        <Content />
-                    </AuthContextProvider>
-                </AppContextProvider>
-            </ThemeProvider>
-        </StyledEngineProvider>
-    );
-}
+const App = () => (
+    <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <AppContextProvider>
+                <AuthContextProvider>
+                    <Content />
+                </AuthContextProvider>
+            </AppContextProvider>
+        </ThemeProvider>
+    </StyledEngineProvider>
+)
 
 export default App

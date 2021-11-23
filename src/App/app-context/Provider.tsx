@@ -1,6 +1,4 @@
 import * as React from 'react'
-import PropTypes, { InferProps } from 'prop-types'
-
 import initState from './init-state'
 import reducer from './reducer'
 import type { TAppState, TAppDispatch } from './types'
@@ -9,7 +7,11 @@ const defaultContextValue: [TAppState, TAppDispatch] = [initState, () => { }]
 const Context = React.createContext(defaultContextValue)
 Context.displayName = 'AppContext'
 
-function Provider(props: InferProps<typeof Provider.propTypes>) {
+type TProps = {
+    children: JSX.Element
+}
+
+const Provider: React.FC<TProps> = (props: TProps) => {
     const [state, dispatch] = React.useReducer(reducer, initState)
     const value: typeof defaultContextValue = React.useMemo(() => [state, dispatch], [state])
 
@@ -18,13 +20,6 @@ function Provider(props: InferProps<typeof Provider.propTypes>) {
             {props.children}
         </Context.Provider>
     )
-}
-
-Provider.propTypes = {
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node,
-    ]).isRequired,
 }
 
 function useAppContext() {

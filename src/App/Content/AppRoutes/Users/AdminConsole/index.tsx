@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import * as React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Container from '@mui/material/Container'
 import ReactJson from 'react-json-view'
@@ -48,18 +48,15 @@ function convertTrackerDataToObject(data: any) {
     return objectArray.reduce((acc, item) => mergeDeep(acc, item), {})
 }
 
-function AdminConsole() {
+const AdminConsole = () => {
     const [authState] = useAuthContext()
     const isAdmin = authState.user.role === ':ADMIN:'
-
+    const [, auth] = useAuth()
     const navigate = useNavigate()
+    const [trackerData, setTrackerData] = React.useState({} as any)
+    const [loadingClientIpInfo, setLoadingClientIpInfo] = React.useState(false)
 
-    const [, auth]: any = useAuth()
-
-    const [trackerData, setTrackerData] = useState({} as any)
-    const [loadingClientIpInfo, setLoadingClientIpInfo] = useState(false)
-
-    useEffect(() => {
+    React.useEffect(() => {
         if (isAdmin) {
             (async () => {
                 try {

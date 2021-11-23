@@ -1,13 +1,11 @@
-import { useCallback } from 'react'
-
+import * as React from 'react'
 import { useAuthContext } from '../../../../App/auth-context/Provider'
-
 import request from '../../request'
 
 function useCall() {
     const [{ accessToken }, authDispatch] = useAuthContext()
 
-    const myCall = useCallback((endpoint: string, init = {}, custom = {}) => request(
+    const myCall = React.useCallback((endpoint: string, init = {}, custom = {}) => request(
         'https://uman-api-v1.herokuapp.com/api' + endpoint,
         {
             ...init,

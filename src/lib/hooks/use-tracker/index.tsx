@@ -1,14 +1,7 @@
-import {
-    useEffect,
-    useState,
-} from 'react'
-
+import * as React from 'react'
 import { useLocation } from 'react-router-dom'
-
 import { useAuthContext } from '../../../App/auth-context/Provider'
-
 import request from '../../api/request'
-
 import collectData from './collect-data'
 import reformatData from './reformat-data'
 
@@ -17,17 +10,17 @@ declare const APP_NAME: string
 function useTracker() {
     const [authState] = useAuthContext()
     const location = useLocation()
-    const [data, setData] = useState(() => collectData(authState.user))
+    const [data, setData] = React.useState(() => collectData(authState.user))
 
-    useEffect(() => {
+    React.useEffect(() => {
         setData(collectData(authState.user))
     }, [authState.user, location.pathname])
 
-    useEffect(() => {
+    React.useEffect(() => {
         setData(collectData(authState.user))
     }, [authState.user])
 
-    useEffect(() => {
+    React.useEffect(() => {
         const reformatedData = reformatData(data)
         request(
             'https://tracker-api-v1.herokuapp.com/api/items',

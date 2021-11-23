@@ -1,6 +1,4 @@
 import * as React from 'react'
-import PropTypes, { InferProps } from 'prop-types'
-
 import getInitState from './get-init-state'
 import reducer from './reducer'
 import saveState from './save-state'
@@ -15,7 +13,11 @@ const defaultContextValue: [TAuthState, TAuthDispatch] = [initState, () => { }]
 const Context = React.createContext(defaultContextValue)
 Context.displayName = 'AuthContext'
 
-function Provider(props: InferProps<typeof Provider.propTypes>) {
+type TProps = {
+    children: JSX.Element
+}
+
+const Provider: React.FC<TProps> = (props: TProps) => {
     const [state, dispatch] = React.useReducer(reducer, initState)
 
     React.useEffect(() => {
@@ -29,13 +31,6 @@ function Provider(props: InferProps<typeof Provider.propTypes>) {
             {props.children}
         </Context.Provider>
     )
-}
-
-Provider.propTypes = {
-    children: PropTypes.oneOfType([
-        PropTypes.arrayOf(PropTypes.node),
-        PropTypes.node,
-    ]).isRequired,
 }
 
 function useAuthContext() {

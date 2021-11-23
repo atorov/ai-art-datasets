@@ -16,7 +16,7 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import useDatasets from '../../../../lib/hooks/use-datasets'
 
-function DatasetDetails() {
+const DatasetDetails = () => {
     const navigate = useNavigate()
     const { datasetId }: any = useParams()
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import * as React from 'react'
 import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -9,14 +9,12 @@ import TableRow from '@mui/material/TableRow'
 import useCall from '../../../../../lib/api/hooks/use-call'
 import { useAuthContext } from '../../../../auth-context/Provider'
 
-function UserDetails() {
+const UserDetails = () => {
     const [authState] = useAuthContext()
-
+    const [user, setUser] = React.useState({} as any)
     const call = useCall()
 
-    const [user, setUser] = useState({} as any)
-
-    useEffect(() => {
+    React.useEffect(() => {
         (async () => {
             try {
                 const res = await call(`/users/${authState.user.id}`)

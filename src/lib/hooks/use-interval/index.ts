@@ -1,15 +1,15 @@
-import { MutableRefObject, useEffect, useRef } from 'react'
+import * as React from 'react'
 
 function useInterval(callback: Function, delay: number) {
-    const savedCallbackRef: MutableRefObject<Function> = useRef(() => {})
+    const savedCallbackRef: React.MutableRefObject<Function> = React.useRef(() => {})
 
     // Remember the latest callback
-    useEffect(() => {
+    React.useEffect(() => {
         savedCallbackRef.current = callback
     }, [callback])
 
     // Set up the interval
-    useEffect(() => {
+    React.useEffect(() => {
         let intervalID: any
         if (delay !== null) {
             intervalID = setInterval(() => savedCallbackRef.current(), delay)

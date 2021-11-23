@@ -15,9 +15,9 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import useGalleryItems from '../../../../lib/hooks/use-gallery-items'
 
-function GalleryItemDetails() {
+const GalleryItemDetails = () => {
     const navigate = useNavigate()
-    const { galleryItemId }: any = useParams()
+    const { galleryItemId } = useParams()
 
     const items = useGalleryItems()
     const galleryItemIndex = items.findIndex((item) => item.id === galleryItemId)

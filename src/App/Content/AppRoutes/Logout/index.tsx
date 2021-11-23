@@ -1,13 +1,11 @@
-import { useEffect } from 'react'
-
+import * as React from 'react'
 import { Navigate } from 'react-router-dom'
-
 import useAuth from '../../../../lib/hooks/use-auth'
 
-function Logout() {
-    const [, auth]: any = useAuth()
+const Logout = () => {
+    const [, auth] = useAuth()
 
-    useEffect(() => {
+    React.useEffect(() => {
         auth(false)
     }, [auth])
 

@@ -5,7 +5,7 @@ import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import TwitterIcon from '@mui/icons-material/Twitter'
 
-function Feedback() {
+const Feedback = () => {
     const navigate = useNavigate()
 
     return (

@@ -17,7 +17,7 @@ type TSubmitButtonStatus = ESubmitButtonStatus.Ready | ESubmitButtonStatus.Pendi
 
 const initSbStatus: TSubmitButtonStatus = ESubmitButtonStatus.Ready
 
-function Login() {
+const Login = () => {
     const location = useLocation()
     const navigate = useNavigate()
 
@@ -29,11 +29,11 @@ function Login() {
     const [submitButtonStatus, setSubmitButtonStatus] = React.useState<TSubmitButtonStatus>(initSbStatus)
 
     const from = location.state?.from?.pathname || '/'
-    console.log('@@@ $$$ ::: TODO: from:', from)
+    console.log('@@@ $$ ::: TODO: from:', from)
 
     React.useEffect(() => {
         if (isAuth) {
-            console.log('@@@ $$$ ::: TODO: to:', from)
+            console.log('@@@ $$ ::: TODO: to:', from)
             navigate(from, { replace: true })
         }
     }, [from, isAuth, navigate])

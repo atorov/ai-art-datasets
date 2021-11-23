@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import * as React from 'react'
 import { Link } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -24,12 +24,12 @@ import useDebounce from '../../../../lib/hooks/use-debounce'
 import appInitState from '../../../app-context/init-state'
 import { useAppContext } from '../../../app-context/Provider'
 
-function Datasets() {
+const Datasets = () => {
     const [appState, appDispatch] = useAppContext()
-
-    const [searchTerm, setSearchTerm] = useState('')
+    const [searchTerm, setSearchTerm] = React.useState('')
     const [debSearchTermStatus, debSearchTerm] = useDebounce(searchTerm, { delay: searchTerm !== '' ? 1250 : 0 })
-    useEffect(() => {
+
+    React.useEffect(() => {
         if (appState.datasets.sfs.searchTerm !== debSearchTerm) {
             appDispatch({
                 type: ':appState/datasets/PATCH:',

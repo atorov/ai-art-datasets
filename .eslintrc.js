@@ -62,8 +62,12 @@ module.exports = {
         semi: 0,
         'semi-style': ['error', 'last'],
 
-        'react/forbid-prop-types': 0,
         'react/destructuring-assignment': 0,
+        'react/forbid-prop-types': 0,
+        'react/function-component-definition': [2, {
+            namedComponents: 'arrow-function',
+            unnamedComponents: 'arrow-function',
+        }],
         'react/no-array-index-key': 0,
         'react/prefer-stateless-function': 0,
         'react/react-in-jsx-scope': 'off',
