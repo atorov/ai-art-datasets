@@ -7,7 +7,7 @@ import { useAppContext } from '../../../App/app-context/Provider'
 import GalleryItemsWorker from '../../../workers/gallery-items/gallery-items.worker'
 
 function useGalleryItems() {
-    const galleryItemsWorker: React.MutableRefObject<any> = React.useRef()
+    const galleryItemsWorker: React.MutableRefObject<typeof GalleryItemsWorker> = React.useRef()
     const [{ gallery: { data: allItems, sfs } }] = useAppContext()
     const [resolvedItems, setResolvedItems] = React.useState(() => allItems)
 
@@ -15,8 +15,8 @@ function useGalleryItems() {
         galleryItemsWorker.current = new GalleryItemsWorker()
         galleryItemsWorker.current.addEventListener(
             'message',
-            (res: any) => {
-                const { items, isMostRecent } = res.data as { items: TGalleryItem[], isMostRecent: boolean }
+            (res: { data: { items: TGalleryItem[], isMostRecent: boolean } }) => {
+                const { items, isMostRecent } = res.data
                 if (isMostRecent) {
                     setResolvedItems(items)
                 }

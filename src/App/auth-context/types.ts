@@ -1,8 +1,9 @@
 import * as React from 'react'
+import type { TUser } from '../../types/TUser'
 
 export type TAuthState = Partial<{
     accessToken: string;
-    user: any;
+    user: TUser;
 }>
 
 export type TAuthAction = {

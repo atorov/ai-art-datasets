@@ -50,7 +50,7 @@ function convertTrackerDataToObject(data: any) {
 
 const AdminConsole = () => {
     const [authState] = useAuthContext()
-    const isAdmin = authState.user.role === ':ADMIN:'
+    const isAdmin = authState.user?.role === ':ADMIN:'
     const [, auth] = useAuth()
     const navigate = useNavigate()
     const [trackerData, setTrackerData] = React.useState({} as any)
@@ -60,7 +60,7 @@ const AdminConsole = () => {
         if (isAdmin) {
             (async () => {
                 try {
-                    const data: any = (await request(`https://tracker-api-v1.herokuapp.com/api/items/${APP_NAME}`)).data.data
+                    const data = (await request<any>(`https://tracker-api-v1.herokuapp.com/api/items/${APP_NAME}`)).data.data
                     let parsedData = convertTrackerDataToObject(data)
 
                     if (parsedData?.__clientIp) {
@@ -107,9 +107,9 @@ const AdminConsole = () => {
 
                         for (let i = 0; i < clientIps.length; i++) {
                             const ip = clientIps[i]
-                            const res = await request(`https://ipapi.co/${ip}/json/`)
+                            const res = await request<any>(`https://ipapi.co/${ip}/json/`)
                             const data = res?.data
-                            if (data && !data.error) {
+                            if (!data?.error) {
                                 clientIpsInfo.push(data)
                             }
                         }
@@ -151,12 +151,12 @@ const AdminConsole = () => {
                     const clientIps: string[] = Object.keys(trackerData.__clientIp)
                     try {
                         const ip = clientIps[clientIps.length - 1]
-                        const res = await request(`https://ipapi.co/${ip}/json/`)
+                        const res = await request<any>(`https://ipapi.co/${ip}/json/`)
                         const data = res?.data
 
                         const __visits = trackerData.__clientIp[ip]
 
-                        if (data && !data.error && __visits) {
+                        if (!data?.error && __visits) {
                             const __decoratedLastClientIp = { ...data, __visits, __flag: getFlag(data.country) }
                             setTrackerData((prevTrackerData: any) => ({ ...prevTrackerData, __decoratedLastClientIp }))
                         }

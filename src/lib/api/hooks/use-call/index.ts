@@ -1,11 +1,16 @@
 import * as React from 'react'
 import { useAuthContext } from '../../../../App/auth-context/Provider'
 import request from '../../request'
+import type { TRequestCustom, TRequestInit } from '../../request'
 
-function useCall() {
+function useCall<TData>() {
     const [{ accessToken }, authDispatch] = useAuthContext()
 
-    const myCall = React.useCallback((endpoint: string, init = {}, custom = {}) => request(
+    const call = React.useCallback((
+        endpoint: string,
+        init: TRequestInit = {},
+        custom: TRequestCustom = {},
+    ) => request<TData>(
         'https://uman-api-v1.herokuapp.com/api' + endpoint,
         {
             ...init,
@@ -20,7 +25,7 @@ function useCall() {
         },
     ), [accessToken, authDispatch])
 
-    return myCall
+    return call
 }
 
 export default useCall

@@ -40,7 +40,7 @@ const Home = () => {
             >
                 {appState.homeNavItems.data.map(({
                     id, name, description, imgUrl, link, auth,
-                }) => ((isAuth && (auth === ':!OPEN:' || (auth === ':ADMIN:' && authState.user.role !== ':ADMIN:')))
+                }) => ((isAuth && (auth === ':!OPEN:' || (auth === ':ADMIN:' && authState.user?.role !== ':ADMIN:')))
                     ? null : (
                         <Link
                             key={id}

@@ -1,17 +1,17 @@
-type TRequestInit = Partial<{
+export type TRequestInit = Partial<{
         method: string
-        headers: { [K: string]: string }
-        data: any
+        headers: Partial<{ [K: string]: string }>
+        data: unknown
         body: string
         mode: 'no-cors' | 'cors' | 'same-origin'
 }>
 
-type TRequestCustom = Partial<{
+export type TRequestCustom = Partial<{
     cb: Function
     dispatch: Function
 }>
 
-async function request(resource: string, init: TRequestInit = {}, custom: TRequestCustom = {}) {
+async function request<TResData>(resource: string, init: TRequestInit = {}, custom: TRequestCustom = {}) {
     const {
         method = 'GET',
         headers = {},
@@ -66,12 +66,12 @@ async function request(resource: string, init: TRequestInit = {}, custom: TReque
         console.error('::: Request error! status:', response.status)
         console.error('::: Request error! statusText:', response.statusText)
         console.error('::: Request error! response:', await response.text())
-        const error: any = new Error(response.statusText)
+        const error: Error & { response?: Response } = new Error(response.statusText)
         error.response = await response
         throw error
     }
 
-    let responseData
+    let responseData: TResData
     try {
         responseData = await response.json()
     }

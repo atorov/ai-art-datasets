@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import useAuth from '../../../../lib/hooks/use-auth'
 import useCall from '../../../../lib/api/hooks/use-call'
+import type { TAuthRes } from '../../../../types/TAuthRes'
 
 enum ESubmitButtonStatus {
     Ready = ':READY:',
@@ -23,7 +24,7 @@ const Login = () => {
     const navigate = useNavigate()
 
     const [isAuth, auth] = useAuth()
-    const call = useCall()
+    const callAuth = useCall<TAuthRes>()
 
     const [username, setUsername] = React.useState('')
     const [password, setPassword] = React.useState('')
@@ -68,7 +69,7 @@ const Login = () => {
 
                         let res
                         try {
-                            res = await call('/auth', { method: 'POST', data: { name: username, password } })
+                            res = await callAuth('/auth', { method: 'POST', data: { name: username, password } })
                             const {
                                 accessToken, name, role, userId,
                             } = res.data

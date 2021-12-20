@@ -10,7 +10,7 @@ function useInterval(callback: Function, delay: number) {
 
     // Set up the interval
     React.useEffect(() => {
-        let intervalID: any
+        let intervalID: ReturnType<typeof setInterval>
         if (delay !== null) {
             intervalID = setInterval(() => savedCallbackRef.current(), delay)
         }

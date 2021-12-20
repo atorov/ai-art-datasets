@@ -3,7 +3,10 @@ import { BrowserRouter } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import LinearProgress from '@mui/material/LinearProgress'
 import request from '../../lib/api/request'
-import type { TDataset } from '../../types/TDataset'
+import type { TDatasetItem } from '../../types/TDatasetItem'
+import type { TGalleryItem } from '../../types/TGalleryItem'
+import type { THomeNavItems } from '../../types/THomeNavItems'
+import type { TXsettings } from '../../types/TXsettings'
 import { useAppContext } from '../app-context/Provider'
 import { useAuthContext } from '../auth-context/Provider'
 import AppRoutes from './AppRoutes'
@@ -29,30 +32,37 @@ const Content = () => {
 
             (async () => {
                 try {
-                    const data = (await Promise.all([
-                        request('/local-db/xsettings.json'),
-                        request('/local-db/home-nav-items.json'),
-                        request('/local-db/datasets.json'),
-                        request('/local-db/gallery.json'),
-                        request(`https://tracker-api-v1.herokuapp.com/api/items/${APP_NAME}`),
-                    ])).map((item) => item.data)
+                    const res = (await Promise.all([
+                        request<TXsettings>('/local-db/xsettings.json'),
+                        request<THomeNavItems[]>('/local-db/home-nav-items.json'),
+                        request<TDatasetItem[]>('/local-db/datasets.json'),
+                        request<TGalleryItem[]>('/local-db/gallery.json'),
+                        request<any>(`https://tracker-api-v1.herokuapp.com/api/items/${APP_NAME}`),
+                    ]))
+                    const [
+                        xsettingsData,
+                        homeNavItemsData,
+                        datasetItemsData,
+                        galleryItemsData,
+                        trackerData,
+                    ] = res.map(({ data }) => data)
 
                     appDispatch({
                         type: ':appState/xsettings/PATCH:',
                         payload: {
                             status: ':READY:',
-                            data: data[0],
+                            data: xsettingsData,
                         },
                     })
                     appDispatch({
                         type: ':appState/homeNavItems/PATCH:',
                         payload: {
                             status: ':READY:',
-                            data: data[1],
+                            data: homeNavItemsData,
                         },
                     })
 
-                    const downloadsData = Object.entries(data[4].data).reduce((acc, [key, value]) => {
+                    const downloadsData = Object.entries(trackerData.data).reduce((acc, [key, value]) => {
                         const parsedKey = decodeURIComponent(key.split(';;')?.[2] || '').split('/')
                         let datasetId = ''
                         if (
@@ -70,22 +80,23 @@ const Content = () => {
                         return acc
                     }, [] as (string | number)[][])
 
-                    const datasetsData = data[2].map((item: TDataset) => {
-                        const [, downloads] = downloadsData.find(([id]) => id === item.id) || []
-                        if (downloads) {
-                            return { ...item, downloads }
-                        }
-                        return item
-                    })
+                    const decoratedDatasetsData = (datasetItemsData as TDatasetItem[])
+                        .map((item) => {
+                            const [, downloads] = downloadsData.find(([id]) => id === item.id) || []
+                            if (downloads) {
+                                return { ...item, downloads }
+                            }
+                            return item
+                        })
                     appDispatch({
                         type: ':appState/datasets/PATCH:',
                         payload: {
                             status: ':READY:',
-                            data: datasetsData,
+                            data: decoratedDatasetsData,
                         },
                     })
 
-                    const viewsData = Object.entries(data[4].data).reduce((acc, [key, value]) => {
+                    const viewsData = Object.entries(trackerData.data).reduce((acc, [key, value]) => {
                         const parsedKey = decodeURIComponent(key.split(';;')?.[2] || '').split('/')
                         let galleryId = ''
                         if (
@@ -102,8 +113,8 @@ const Content = () => {
                         return acc
                     }, [] as (string | number)[][])
 
-                    const galleryData = data[3]
-                        .map((item: TDataset) => {
+                    const galleryData = (galleryItemsData as TGalleryItem[])
+                        .map((item) => {
                             const [, views] = viewsData.find(([id]) => id === item.id) || []
                             if (views) {
                                 return { ...item, views }

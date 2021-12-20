@@ -7,17 +7,18 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableRow from '@mui/material/TableRow'
 import useCall from '../../../../../lib/api/hooks/use-call'
+import type { TUser } from '../../../../../types/TUser'
 import { useAuthContext } from '../../../../auth-context/Provider'
 
 const UserDetails = () => {
     const [authState] = useAuthContext()
-    const [user, setUser] = React.useState({} as any)
-    const call = useCall()
+    const [user, setUser] = React.useState<TUser>({})
+    const callUser = useCall<TUser>()
 
     React.useEffect(() => {
         (async () => {
             try {
-                const res = await call(`/users/${authState.user.id}`)
+                const res = await callUser(`/users/${authState.user?.id}`)
                 setUser(res.data)
             }
             catch (reason) {
@@ -25,13 +26,14 @@ const UserDetails = () => {
                 console.error(msg, reason)
             }
         })()
-    }, [authState.user.id, call])
+    }, [authState.user?.id, callUser])
 
     const username = user.name || 'Loading...'
-    const role: string = ({
+    const role = ({
         ':USER:': 'User',
         ':ADMIN:': 'Admin',
-    } as any)[user.role] || 'N/A'
+        ':UNKNOWN:': 'Unknown',
+    })[user.role ?? ':UNKNOWN:'] || 'N/A'
 
     return (
         <Container

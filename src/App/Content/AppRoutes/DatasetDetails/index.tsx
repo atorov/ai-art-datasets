@@ -18,7 +18,7 @@ import useDatasets from '../../../../lib/hooks/use-datasets'
 
 const DatasetDetails = () => {
     const navigate = useNavigate()
-    const { datasetId }: any = useParams()
+    const { datasetId } = useParams()
 
     const items = useDatasets()
     const datasetIndex = items.findIndex((item) => item.id === datasetId)

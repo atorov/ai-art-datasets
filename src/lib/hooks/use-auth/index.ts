@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useAuthContext } from '../../../App/auth-context/Provider'
 import checkAuth from './check-auth'
 
-function useAuth(): [boolean, (goAuth: any, data?: any) => void] {
+function useAuth(): [boolean, (goAuth: boolean, data?: {}) => void] {
     const [authState, authDispatch] = useAuthContext()
 
     const auth = React.useCallback((goAuth, data) => {
