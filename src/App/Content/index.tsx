@@ -84,7 +84,7 @@ const Content = () => {
                         .map((item) => {
                             const [, downloads] = downloadsData.find(([id]) => id === item.id) || []
                             if (downloads) {
-                                return { ...item, downloads }
+                                return { ...item, downloads: Number(downloads) }
                             }
                             return item
                         })
@@ -117,7 +117,7 @@ const Content = () => {
                         .map((item) => {
                             const [, views] = viewsData.find(([id]) => id === item.id) || []
                             if (views) {
-                                return { ...item, views }
+                                return { ...item, views: Number(views) }
                             }
                             return item
                         })

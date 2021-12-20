@@ -3,7 +3,7 @@ import initState from './init-state'
 import reducer from './reducer'
 import type { TAppState, TAppDispatch } from './types'
 
-const defaultContextValue: [TAppState, TAppDispatch] = [initState, () => { }]
+const defaultContextValue: [TAppState, TAppDispatch] = [initState, () => ({ type: ':appState/__void__:' })]
 const Context = React.createContext(defaultContextValue)
 Context.displayName = 'AppContext'
 

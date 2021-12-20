@@ -131,7 +131,7 @@ const Gallery = () => {
                             payload: {
                                 sfs: {
                                     ...appState.gallery.sfs,
-                                    selectedAuthors: event.target.value,
+                                    selectedAuthors: event.target.value as string[],
                                 },
                             },
                         })}

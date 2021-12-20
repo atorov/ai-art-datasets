@@ -4,8 +4,9 @@ import type { TGalleryItem } from '../../types/TGalleryItem'
 import type { THomeNavItems } from '../../types/THomeNavItems'
 import type { TXsettings } from '../../types/TXsettings'
 
+type TAppStateStatus = ':START_INIT:' | ':INIT:' | ':READY:' | ':ERROR:'
 type TAppStateDatasetsObj = {
-    status: string
+    status: '' | ':READY:' | ':ERROR:'
     data: TDatasetItem[]
     sfs: {
         minItemsNumber: number
@@ -17,9 +18,8 @@ type TAppStateDatasetsObj = {
         selectedLicenses: string[]
     }
 }
-
 type TAppStateGalleryItemsObj = {
-    status: string
+    status: '' | ':READY:' | ':ERROR:'
     data: TGalleryItem[]
     sfs: {
         order: string
@@ -27,12 +27,10 @@ type TAppStateGalleryItemsObj = {
         selectedAuthors: string[]
     }
 }
-
 type TAppStateHomeNavItemsObj = {
-    status: ''
+    status: '' | ':READY:' | ':ERROR:'
     data: THomeNavItems[]
 }
-
 type TAppStateUi = {
     footer: {
         height: number
@@ -44,14 +42,13 @@ type TAppStateUi = {
         palette: unknown
     }
 }
-
 type TAppStateXsettingsObj = {
-    status: ''
+    status: '' | ':READY:' | ':ERROR:'
     data: TXsettings
 }
 
 export type TAppState = {
-    status: ':START_INIT:' | ':READY:'
+    status: TAppStateStatus
     ui: TAppStateUi
     datasets: TAppStateDatasetsObj
     gallery: TAppStateGalleryItemsObj
@@ -59,9 +56,35 @@ export type TAppState = {
     xsettings: TAppStateXsettingsObj
 }
 
-export type TAppAction = {
-    type: string
-    payload?: any
+type TAppActionVoid = {
+    type: ':appState/__void__:'
 }
+type TAppActionStatusSet = {
+    type: ':appState/status/SET:'
+    payload: TAppStateStatus
+}
+type TAppActionDatasetsPatch = {
+    type: ':appState/datasets/PATCH:'
+    payload: Partial<TAppStateDatasetsObj>
+}
+type TAppActionGalleryPatch = {
+    type: ':appState/gallery/PATCH:'
+    payload: Partial<TAppStateGalleryItemsObj>
+}
+type TAppActionHomeNavItemsPatch = {
+    type: ':appState/homeNavItems/PATCH:'
+    payload: Partial<TAppStateHomeNavItemsObj>
+}
+type TAppActionXsettingsPatch = {
+    type: ':appState/xsettings/PATCH:'
+    payload: Partial<TAppStateXsettingsObj>
+}
+export type TAppAction =
+    TAppActionVoid
+    | TAppActionStatusSet
+    | TAppActionDatasetsPatch
+    | TAppActionGalleryPatch
+    | TAppActionHomeNavItemsPatch
+    | TAppActionXsettingsPatch
 
 export type TAppDispatch = React.Dispatch<TAppAction>

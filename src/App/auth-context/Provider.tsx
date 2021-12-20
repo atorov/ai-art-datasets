@@ -9,7 +9,7 @@ declare const APP_NAME: string
 const STORAGE_KEY = `${APP_NAME}-auth`
 const initState = getInitState(STORAGE_KEY)
 
-const defaultContextValue: [TAuthState, TAuthDispatch] = [initState, () => { }]
+const defaultContextValue: [TAuthState, TAuthDispatch] = [initState, () => ({ type: ':appState/__void__:' })]
 const Context = React.createContext(defaultContextValue)
 Context.displayName = 'AuthContext'
 

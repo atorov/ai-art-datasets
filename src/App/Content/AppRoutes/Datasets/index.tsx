@@ -132,7 +132,7 @@ const Datasets = () => {
                             payload: {
                                 sfs: {
                                     ...appState.datasets.sfs,
-                                    minItemsNumber: event.target.value,
+                                    minItemsNumber: Number(event.target.value),
                                 },
                             },
                         })}
@@ -174,7 +174,7 @@ const Datasets = () => {
                             payload: {
                                 sfs: {
                                     ...appState.datasets.sfs,
-                                    minItemsResolution: event.target.value,
+                                    minItemsResolution: Number(event.target.value),
                                 },
                             },
                         })}
@@ -214,7 +214,7 @@ const Datasets = () => {
                             payload: {
                                 sfs: {
                                     ...appState.datasets.sfs,
-                                    selectedImageFormats: event.target.value,
+                                    selectedImageFormats: event.target.value as string[],
                                 },
                             },
                         })}
@@ -249,7 +249,7 @@ const Datasets = () => {
                             payload: {
                                 sfs: {
                                     ...appState.datasets.sfs,
-                                    selectedAuthors: event.target.value,
+                                    selectedAuthors: event.target.value as string[],
                                 },
                             },
                         })}
@@ -284,7 +284,7 @@ const Datasets = () => {
                             payload: {
                                 sfs: {
                                     ...appState.datasets.sfs,
-                                    selectedLicenses: event.target.value,
+                                    selectedLicenses: event.target.value as string[],
                                 },
                             },
                         })}
