@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useTheme, styled, Theme } from '@mui/material/styles'
+import { styled, useTheme, Theme } from '@mui/material/styles'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import TwitterIcon from '@mui/icons-material/Twitter'
@@ -34,12 +34,7 @@ const Footer = () => {
                 justifyContent: 'center',
                 minHeight: appState.ui.footer.height,
                 maxHeight: appState.ui.footer.height,
-                minWidth: '100%',
-                maxWidth: '100%',
-                margin: 0,
-                padding: 4,
                 background: theme.palette.background.paper,
-                textAlign: 'center',
             }}
         >
             <Typography
@@ -75,7 +70,6 @@ const Footer = () => {
                     Terms of use
                 </Typography>
             </StyledLink>
-
         </Container>
     )
 }
