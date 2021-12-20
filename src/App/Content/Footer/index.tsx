@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import { useAppContext } from '../../app-context/Provider'
 
+declare const APP_VERSION: string
+
 const StyledLink = styled(Link)(({ theme }: { theme: Theme }) => ({
     textDecoration: 'none',
     color: theme.palette.text.primary,
@@ -45,6 +47,16 @@ const Footer = () => {
             >
                 © Atorov 2020-2021
             </Typography>
+            <Typography
+                component="p"
+                variant="caption"
+                sx={{ cursor: 'pointer' }}
+                onClick={() => navigate('/feedback/redirect')}
+            >
+                &nbsp;|&nbsp;
+                {APP_VERSION}
+                &nbsp;|
+            </Typography>
 
             <Typography
                 component="p"
@@ -67,7 +79,7 @@ const Footer = () => {
                     variant="caption"
                     sx={{ cursor: 'pointer' }}
                 >
-                    Terms of use
+                    | Terms of use
                 </Typography>
             </StyledLink>
         </Container>
