@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import type { Location } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
@@ -28,15 +29,14 @@ const Login = () => {
     const [password, setPassword] = React.useState('')
     const [submitButtonStatus, setSubmitButtonStatus] = React.useState<TSubmitButtonStatus>(initSbStatus)
 
-    const from = location.state?.from?.pathname || '/'
-    console.log('@@@ $$ ::: TODO: from:', from)
+    const { state: locationState } = location as Location & { state: { from?: { pathname?: string } } | null }
+    const fromPathname = locationState?.from?.pathname ?? '/'
 
     React.useEffect(() => {
         if (isAuth) {
-            console.log('@@@ $$ ::: TODO: to:', from)
-            navigate(from, { replace: true })
+            navigate(fromPathname, { replace: true })
         }
-    }, [from, isAuth, navigate])
+    }, [fromPathname, isAuth, navigate])
 
     return (
         <Container component="main" maxWidth="xs">
