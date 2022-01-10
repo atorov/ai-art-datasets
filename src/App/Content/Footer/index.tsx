@@ -45,7 +45,7 @@ const Footer = () => {
                 sx={{ cursor: 'pointer' }}
                 onClick={() => navigate('/feedback/redirect')}
             >
-                © Atorov 2020-2021
+                © Atorov 2020-2022
             </Typography>
             <Typography
                 component="p"
