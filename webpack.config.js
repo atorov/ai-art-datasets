@@ -232,6 +232,7 @@ if (MODE === 'development') {
             // stats: 'errors-only',
             stats: 'minimal',
         },
+        server: 'https',
         // static: {
         // directory: path.resolve(__dirname, "static"),
         // staticOptions: {},
