@@ -6,19 +6,19 @@ export type TAuthState = Partial<{
     user: TUser;
 }>
 
-type TAuthActionVoid = {
+type TAuthEventVoid = {
     type: ':appState/__void__:'
 }
-type TAuthActionInit = {
+type TAuthEventInit = {
     type: ':authState/INIT:'
 }
-type TAuthActionPatch = {
+type TAuthEventPatch = {
     type: ':authState/PATCH:'
     payload: Partial<TAuthState>
 }
-export type TAuthAction =
-    TAuthActionVoid
-    | TAuthActionInit
-    | TAuthActionPatch
+export type TAuthEvent =
+    TAuthEventVoid
+    | TAuthEventInit
+    | TAuthEventPatch
 
-export type TAuthDispatch = React.Dispatch<TAuthAction>
+export type TAuthDispatch = React.Dispatch<TAuthEvent>

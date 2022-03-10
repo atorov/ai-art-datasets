@@ -1,8 +1,8 @@
 // import initState from './init-state'
-import type { TAppState, TAppAction } from './types'
+import type { TAppState, TAppEvent } from './types'
 
-function reducer(state: TAppState, action: TAppAction): TAppState {
-    switch (action.type) {
+function reducer(state: TAppState, event: TAppEvent): TAppState {
+    switch (event.type) {
         // __void__
         case ':appState/__void__:':
             return state
@@ -11,7 +11,7 @@ function reducer(state: TAppState, action: TAppAction): TAppState {
         case ':appState/status/SET:':
             return {
                 ...state,
-                status: action.payload,
+                status: event.payload,
             }
 
         case ':appState/datasets/PATCH:':
@@ -19,7 +19,7 @@ function reducer(state: TAppState, action: TAppAction): TAppState {
                 ...state,
                 datasets: {
                     ...state.datasets,
-                    ...action.payload,
+                    ...event.payload,
                 },
             }
         case ':appState/gallery/PATCH:':
@@ -27,7 +27,7 @@ function reducer(state: TAppState, action: TAppAction): TAppState {
                 ...state,
                 gallery: {
                     ...state.gallery,
-                    ...action.payload,
+                    ...event.payload,
                 },
             }
         case ':appState/homeNavItems/PATCH:':
@@ -35,7 +35,7 @@ function reducer(state: TAppState, action: TAppAction): TAppState {
                 ...state,
                 homeNavItems: {
                     ...state.homeNavItems,
-                    ...action.payload,
+                    ...event.payload,
                 },
             }
         case ':appState/xsettings/PATCH:':
@@ -43,14 +43,14 @@ function reducer(state: TAppState, action: TAppAction): TAppState {
                 ...state,
                 xsettings: {
                     ...state.xsettings,
-                    ...action.payload,
+                    ...event.payload,
                 },
             }
 
         // do not match
         default: {
-            const msg = 'Action type does not match!'
-            console.error(msg, (action as any).type)
+            const msg = 'Event type does not match!'
+            console.error(msg, (event as any).type)
             throw new Error(msg)
             // return state
         }

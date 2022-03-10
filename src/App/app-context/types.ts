@@ -56,35 +56,35 @@ export type TAppState = {
     xsettings: TAppStateXsettingsObj
 }
 
-type TAppActionVoid = {
+type TAppEventVoid = {
     type: ':appState/__void__:'
 }
-type TAppActionStatusSet = {
+type TAppEventStatusSet = {
     type: ':appState/status/SET:'
     payload: TAppStateStatus
 }
-type TAppActionDatasetsPatch = {
+type TAppEventDatasetsPatch = {
     type: ':appState/datasets/PATCH:'
     payload: Partial<TAppStateDatasetsObj>
 }
-type TAppActionGalleryPatch = {
+type TAppEventGalleryPatch = {
     type: ':appState/gallery/PATCH:'
     payload: Partial<TAppStateGalleryItemsObj>
 }
-type TAppActionHomeNavItemsPatch = {
+type TAppEventHomeNavItemsPatch = {
     type: ':appState/homeNavItems/PATCH:'
     payload: Partial<TAppStateHomeNavItemsObj>
 }
-type TAppActionXsettingsPatch = {
+type TAppEventXsettingsPatch = {
     type: ':appState/xsettings/PATCH:'
     payload: Partial<TAppStateXsettingsObj>
 }
-export type TAppAction =
-    TAppActionVoid
-    | TAppActionStatusSet
-    | TAppActionDatasetsPatch
-    | TAppActionGalleryPatch
-    | TAppActionHomeNavItemsPatch
-    | TAppActionXsettingsPatch
+export type TAppEvent =
+    TAppEventVoid
+    | TAppEventStatusSet
+    | TAppEventDatasetsPatch
+    | TAppEventGalleryPatch
+    | TAppEventHomeNavItemsPatch
+    | TAppEventXsettingsPatch
 
-export type TAppDispatch = React.Dispatch<TAppAction>
+export type TAppDispatch = React.Dispatch<TAppEvent>
