@@ -128,7 +128,7 @@ const config = {
             {
                 test: /\.m?js$/,
                 resolve: {
-                    fullySpecified: false, // disable the behaviour
+                    fullySpecified: false, // disable the behavior
                 },
             },
             {
@@ -168,9 +168,6 @@ const config = {
                 {
                     from: `${SRC}/assets/img/favicon.png`,
                     to: `${DIST}/favicon.png`,
-                    globOptions: {
-                        ignore: ['.DS_Store'],
-                    },
                 },
                 {
                     from: `${SRC}/assets/img`,
@@ -189,9 +186,6 @@ const config = {
                 // {
                 //     from: `${SRC}/assets/surge.sh`,
                 //     to: `${PUBLIC}/`,
-                //     globOptions: {
-                //         ignore: ['.DS_Store'],
-                //     },
                 // },
             ],
         }),

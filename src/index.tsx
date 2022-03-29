@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { render } from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import App from './App'
 
 declare const APP_NAME: string
@@ -19,11 +19,10 @@ console.log('::: Build Date:', buildDate)
 console.log('::: process.env.NODE_ENV (NODE_ENV):', process.env.NODE_ENV)
 console.log('::: ::: :::')
 
-render(
-    (
-        <StrictMode>
-            <App />
-        </StrictMode>
-    ),
-    document.querySelector('#app-root'),
+const container = document.querySelector('#app-root') as Element
+const root = createRoot(container)
+root.render(
+    <StrictMode>
+        <App />
+    </StrictMode>,
 )
