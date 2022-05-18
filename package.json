@@ -1,6 +1,6 @@
 {
   "name": "ai-art-datasets",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "private": true,
   "description": "AI Art Datasets",
   "repository": {
@@ -46,7 +46,7 @@
     "@types/react-router-dom": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
-    "copy-webpack-plugin": "^10.0.0",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.2.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "^19.0.1",
