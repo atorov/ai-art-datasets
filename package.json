@@ -1,6 +1,6 @@
 {
   "name": "ai-art-datasets",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "private": true,
   "description": "AI Art Datasets",
   "repository": {
@@ -58,10 +58,10 @@
     "mini-css-extract-plugin": "^2.1.0",
     "node-sass": "^7.0.0",
     "nodemon": "^2.0.7",
-    "postcss-loader": "^6.1.0",
+    "postcss-loader": "^7.0.0",
     "postcss-preset-env": "^7.0.1",
     "pre-commit": "^1.2.2",
-    "sass-loader": "^12.0.0",
+    "sass-loader": "^13.0.2",
     "style-loader": "^3.0.0",
     "ts-loader": "^9.2.1",
     "typescript": "^4.1.3",
