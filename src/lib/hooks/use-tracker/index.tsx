@@ -23,7 +23,7 @@ function useTracker() {
     React.useEffect(() => {
         const reformatedData = reformatData(data)
         request(
-            'https://tracker-api-v1.herokuapp.com/api/items',
+            'https://tracker-api-production.up.railway.app/api/items',
             {
                 method: 'POST',
                 data: { site: APP_NAME, data: reformatedData },

@@ -60,7 +60,7 @@ const AdminConsole = () => {
         if (isAdmin) {
             (async () => {
                 try {
-                    const data = (await request<any>(`https://tracker-api-v1.herokuapp.com/api/items/${APP_NAME}`)).data.data
+                    const data = (await request<any>(`https://tracker-api-production.up.railway.app/api/items/${APP_NAME}`)).data.data
                     let parsedData = convertTrackerDataToObject(data)
 
                     if (parsedData?.__clientIp) {

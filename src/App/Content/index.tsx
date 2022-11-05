@@ -37,7 +37,7 @@ const Content = () => {
                         request<THomeNavItems[]>('/local-db/home-nav-items.json'),
                         request<TDatasetItem[]>('/local-db/datasets.json'),
                         request<TGalleryItem[]>('/local-db/gallery.json'),
-                        request<any>(`https://tracker-api-v1.herokuapp.com/api/items/${APP_NAME}`),
+                        request<any>(`https://tracker-api-production.up.railway.app/api/items/${APP_NAME}`),
                     ]))
                     const [
                         xsettingsData,

@@ -11,7 +11,7 @@ function useCall<TData>() {
         init: TRequestInit = {},
         custom: TRequestCustom = {},
     ) => request<TData>(
-        'https://uman-api-v1.herokuapp.com/api' + endpoint,
+        'https://uman-api-production.up.railway.app/api' + endpoint,
         {
             ...init,
             headers: {
