@@ -1,6 +1,6 @@
 {
   "name": "ai-art-datasets",
-  "version": "6.0.1",
+  "version": "6.1.0",
   "private": true,
   "description": "AI Art Datasets",
   "repository": {
@@ -12,9 +12,9 @@
   "main": "src/app/index.tsx",
   "scripts": {
     "predev": "npm run check",
-    "dev": "nodemon --watch webpack.*.js --exec \"NODE_ENV=development PORT=9080 webpack serve --progress\"",
+    "dev": "nodemon --watch webpack.*.js --exec \"webpack serve --define-process-env-node-env development --env BUILD_ENV=local --env PORT=9080 --progress\"",
     "prebuild": "npm run check",
-    "build": "npm run clean && NODE_ENV=production webpack --progress && npm run html200",
+    "build": "npm run clean && webpack --define-process-env-node-env production --progress && npm run html200",
     "check": "npm run lint",
     "clean": "rm -rf ./build/public",
     "html200": "cp ./build/public/index.html ./build/public/200.html",
@@ -56,7 +56,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "html-webpack-plugin": "^5.0.0",
     "mini-css-extract-plugin": "^2.1.0",
-    "node-sass": "^7.0.0",
+    "node-sass": "^8.0.0",
     "nodemon": "^2.0.7",
     "postcss-loader": "^7.0.0",
     "postcss-preset-env": "^7.0.1",
@@ -66,7 +66,7 @@
     "ts-loader": "^9.2.1",
     "typescript": "^4.1.3",
     "webpack": "^5.18.0",
-    "webpack-cli": "^4.4.0",
+    "webpack-cli": "^5.0.0",
     "webpack-dev-server": "^4.0.0",
     "whatwg-fetch": "^3.5.0",
     "worker-loader": "^3.0.7"
