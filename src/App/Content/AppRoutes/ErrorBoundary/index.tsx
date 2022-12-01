@@ -1,27 +1,36 @@
 import { Component } from 'react'
-import PropTypes, { InferProps } from 'prop-types'
+import type { ErrorInfo, ReactNode } from 'react'
+// import PropTypes, { InferProps } from 'prop-types'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
 
-class ErrorBoundary extends Component<InferProps<typeof ErrorBoundary.propTypes>, any> {
-    // eslint-disable-next-line react/static-property-placement
-    public static propTypes: any = {
-        children: PropTypes.oneOfType([
-            PropTypes.arrayOf(PropTypes.node),
-            PropTypes.node,
-        ]).isRequired,
-    }
+// type Props = InferProps<typeof ErrorBoundary.propTypes>
+type Props = {
+    children: ReactNode
+}
 
-    constructor(props: any) {
+interface State {
+    hasError: boolean
+    error?: Error
+}
+
+class ErrorBoundary extends Component<Props, State> {
+    // public static propTypes: any = {
+    //     children: PropTypes.oneOfType([
+    //         PropTypes.arrayOf(PropTypes.node),
+    //         PropTypes.node,
+    //     ]).isRequired,
+    // }
+
+    constructor(props: Props) {
         super(props)
         this.state = {
             hasError: false,
-            error: null,
         }
     }
 
-    static getDerivedStateFromError(error: any) {
+    public static getDerivedStateFromError(error: Error): State {
         // Update state so the next render will show the fallback UI.
         return {
             hasError: true,
@@ -29,12 +38,12 @@ class ErrorBoundary extends Component<InferProps<typeof ErrorBoundary.propTypes>
         }
     }
 
-    async componentDidCatch(error: any, info: any) {
+    public async componentDidCatch(error: Error, info: ErrorInfo) {
         // You can also log the error to an error reporting service
         console.error('::: Error:', error, info)
     }
 
-    render() {
+    public render() {
         if (!this.state.hasError) {
             return this.props.children
         }
