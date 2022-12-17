@@ -12,12 +12,14 @@ type TProps = {
 }
 
 const Provider: React.FC<TProps> = (props: TProps) => {
+    const { children, ...childrenProps } = props
+
     const [state, dispatch] = React.useReducer(reducer, initState)
     const value: typeof defaultContextValue = React.useMemo(() => [state, dispatch], [state])
 
     return (
-        <Context.Provider value={value} {...props}>
-            {props.children}
+        <Context.Provider value={value} {...childrenProps}>
+            {children}
         </Context.Provider>
     )
 }

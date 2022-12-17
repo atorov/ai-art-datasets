@@ -6,12 +6,12 @@ type TProps = {
     children: JSX.Element
 }
 
-const PrivateRoute: React.FC<TProps> = (props: TProps) => {
+const PrivateRoute: React.FC<TProps> = ({ children }: TProps) => {
     const [isAuth] = useAuth()
     const location = useLocation()
 
     if (isAuth) {
-        return props.children
+        return children
     }
 
     return (
